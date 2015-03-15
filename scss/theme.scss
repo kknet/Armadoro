@@ -6,3 +6,164 @@
 
 // Import Bootstrap for Sass
 @import "bootstrap";
+
+
+//
+// Custom CSS classes here
+// --------------------------------------------------
+
+//== Theme Variables
+//
+
+$base-letter-spacing: .1em;
+$link-gray-color: #666;
+
+
+//== Html 5 tags
+//
+
+footer{
+	margin-top: ($line-height-computed * 2);
+}
+
+header{
+	margin: $line-height-computed 0;
+
+	.logo{
+		text-align: center;
+		font-family: 'Lato', sans-serif;
+		text-transform: uppercase;
+
+		> a{
+			color: $text-color;
+
+			&:hover{
+				text-decoration: none;
+			}
+		}
+
+	}
+
+	.tagline {
+		display: block;
+		text-transform: lowercase;
+		font-family: $font-family-serif;
+		font-size: 18px;
+		line-height: 1.5;
+	}
+}
+
+//== Helper classes
+//
+
+.section { margin: $line-height-computed 0px; }
+.margin-remove { margin: 0px !important; }
+
+//== Navbar nav links
+//
+
+.navbar-nav > li > a{
+	text-transform: uppercase;
+	letter-spacing: $base-letter-spacing;
+	font-family: 'Lato', sans-serif;
+}
+
+//== styles for subnav
+//
+
+.subnav{
+	@include list-unstyled;
+}
+
+.subnav-title{
+	font-size: 13px;
+	margin-top: ($line-height-computed / 2);
+	margin-bottom: ($line-height-computed / 2);
+	letter-spacing: $base-letter-spacing;
+	text-transform: uppercase;
+}
+
+//== Product loop
+//
+
+.product{
+	text-align: center;
+	margin-top: $line-height-computed;
+}
+
+.total-products{
+	line-height: $input-height-base;
+}
+
+.product-title > a {
+	color: $link-gray-color;
+	display: block;
+	@include text-overflow;
+}
+
+.product-price{
+	font-size: 14px;
+	margin-top: ($line-height-computed / 2);
+	font-weight: $headings-font-weight;
+}
+
+.product-thumb {
+	height: 175px;
+	overflow: hidden;
+	line-height: 175px;
+
+	a > img, > img {
+		max-width: 100%;
+		height: auto;
+	}
+}
+
+//== category-title
+//
+
+.category-title{
+	text-align: center;
+	position: relative;
+
+	> * {
+		margin: 0;
+		display: inline-block;
+		background-color: #fff;
+		z-index: 10;
+		padding: 0 10px;
+		position: relative;
+	}
+
+	&:after{
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 0;
+		width: 100%;
+		border-bottom: 1px solid #ebebeb;
+	}
+}
+
+.collection-title, .category-title > * {
+	font-family: $font-family-serif;
+	letter-spacing: $base-letter-spacing;
+	text-transform: uppercase;
+	margin: 0;
+}
+
+//== Pagination
+//
+
+.paginate{
+	display: block;
+	text-align: right;
+	margin: ($line-height-computed * 3.5) 0 0;
+
+	.page, .prev, .next{
+		padding: 0 3px;
+
+		> a {
+			color: $link-gray-color; 
+		}
+	}
+}

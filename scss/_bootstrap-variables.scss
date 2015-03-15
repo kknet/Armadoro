@@ -42,12 +42,12 @@
 //## Font, line-height, and color for body text, headings, and more.
 
 // $font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif
-// $font-family-serif:       Georgia, "Times New Roman", Times, serif
+$font-family-serif:      'Lora', Georgia, "Times New Roman", Times, serif;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 // $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace
 // $font-family-base:        $font-family-sans-serif
 
-// $font-size-base:          14px
+$font-size-base:          12px;
 // $font-size-large:         ceil(($font-size-base * 1.25)) // ~18px
 // $font-size-small:         ceil(($font-size-base * 0.85)) // ~12px
 
@@ -59,7 +59,7 @@
 // $font-size-h6:            ceil(($font-size-base * 0.85)) // ~12px
 
 //** Unit-less `line-height` for use in components like buttons.
-// $line-height-base:        1.428571429 // 20/14
+$line-height-base:        1.618;
 //** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
 // $line-height-computed:    floor(($font-size-base * $line-height-base)) // ~20px
 
@@ -103,7 +103,7 @@
 // $line-height-large:         1.3333333 // extra decimals for Win 8.1 Chrome
 // $line-height-small:         1.5
 
-// $border-radius-base:        4px
+$border-radius-base:        0px;
 // $border-radius-large:       6px
 // $border-radius-small:       3px
 
@@ -309,7 +309,7 @@
 //** Number of columns in the grid.
 // $grid-columns:              12
 //** Padding between columns. Gets divided in half for the left and right.
-// $grid-gutter-width:         30px
+$grid-gutter-width:         30px;
 // Navbar collapse
 //** Point at which the navbar becomes uncollapsed.
 // $grid-float-breakpoint:     $screen-sm-min
@@ -331,7 +331,7 @@
 // $container-md:                 $container-desktop
 
 // Large screen / wide desktop
-// $container-large-desktop:      (1140px + $grid-gutter-width)
+$container-large-desktop:      (940px + $grid-gutter-width);
 //** For `$screen-lg-min` and up.
 // $container-lg:                 $container-large-desktop
 
@@ -340,7 +340,7 @@
 //##
 
 // Basics of a navbar
-// $navbar-height:                    50px
+$navbar-height:                    30px;
 // $navbar-margin-bottom:             $line-height-computed
 // $navbar-border-radius:             $border-radius-base
 // $navbar-padding-horizontal:        floor(($grid-gutter-width / 2))
@@ -373,15 +373,15 @@
 // Inverted navbar
 // Reset inverted navbar basics
 // $navbar-inverse-color:                      lighten($gray-light, 15%)
-// $navbar-inverse-bg:                         #222
+$navbar-inverse-bg:                         #222;
 // $navbar-inverse-border:                     darken($navbar-inverse-bg, 10%)
 
 // Inverted navbar links
-// $navbar-inverse-link-color:                 lighten($gray-light, 15%)
+$navbar-inverse-link-color:                 #fff;
 // $navbar-inverse-link-hover-color:           #fff
 // $navbar-inverse-link-hover-bg:              transparent
 // $navbar-inverse-link-active-color:          $navbar-inverse-link-hover-color
-// $navbar-inverse-link-active-bg:             darken($navbar-inverse-bg, 10%)
+$navbar-inverse-link-active-bg:             $navbar-inverse-bg;
 // $navbar-inverse-link-disabled-color:        #444
 // $navbar-inverse-link-disabled-bg:           transparent
 
@@ -752,9 +752,9 @@
 //##
 
 // $breadcrumb-padding-vertical:   8px
-// $breadcrumb-padding-horizontal: 15px
+$breadcrumb-padding-horizontal: 0px;
 //** Breadcrumb background color
-// $breadcrumb-bg:                 #f5f5f5
+$breadcrumb-bg:                 #fff;
 //** Breadcrumb text color
 // $breadcrumb-color:              #ccc
 //** Text color of current page in the breadcrumb

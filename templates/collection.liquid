@@ -1,135 +1,91 @@
 <div id="collection">
 
-  {% paginate collection.products by settings.pagination_limit %}
-  <!-- Begin collection info -->
-  <div class="row">
-    <div class="span12">
+	{% paginate collection.products by settings.pagination_limit %}
 
-      <!-- Begin breadcrumb -->
-      <div class="breadcrumb clearfix">
-        <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">{{ 'general.breadcrumbs.home' | t }}</span></a></span>
-        <span class="arrow-space">&#62;</span>
-        <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ collection.url }}" title="{{ collection.title | escape }}" itemprop="url"><span itemprop="title">{{ collection.title }}</span></a></span>
 
-        {% if current_tags %}
-          {% for tag in current_tags %}
-            <span class="arrow-space">&#62;</span>
-            <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/collections/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handleize }}" title="{{ tag | escape }}" itemprop="url"><span itemprop="title">{{ tag }}</span></a></span>
-          {% endfor %}
-        {% endif %}
+	<div class="row">
 
-        {% if paginate.pages != 0 %}
-          <span class="arrow-space">&#62;</span> <strong>{{ 'general.pagination.summary' | t: current_page: paginate.current_page, pages: paginate.pages }}</strong>
-        {% endif %}
-      </div>
-      <!-- End breadcrumb -->
+		<div class="col-md-3">
+			<h4 class="subnav-title">What's New</h4>
+			<ul class="subnav">
+				<li>Bracelets</li>
+				<li>Earrings</li>
+				<li>Necklace</li>
+				<li>Rings</li>
+				<li>Anklets</li>
+			</ul>
+			<h4 class="subnav-title">Armadoro jewelry</h4>
+			<ul class="subnav">
+				<li>Bracelets</li>
+				<li>Earrings</li>
+				<li>Necklace</li>
+				<li>Rings</li>
+				<li>Anklets</li>
+			</ul>
+		</div>
 
-      <!-- Begin sort collection -->
-      <div class="clearfix">
-        <h1 class="collection-title">{{ collection.title }}</h1>
-        {% if settings.collection_tags %}        
-          {% if collection.all_tags.size > 0 %}
-          <div class="browse-tags">
-          	<label>{{ 'collections.general.browse' | t }}</label>
-          	<select id="collection_tags" class="coll-filter">
-          		<option value="">{{ 'collections.general.all_items' | t }}</option>
-          		{% for tag in collection.all_tags %}
-          			<option value="{{ tag | handle }}"{% if current_tags contains tag %} selected="selected"{% endif %}>{{ tag }}</option>
-          		{% endfor %}
-          	</select>        
-          </div>
-          {% endif %}        
-        {% endif %}
-        {% if settings.collection_sort and collection.products_count > 1 %}
-          <div class="browse-tags">
-            <label>{{ 'collections.sorting.title' | t }}:</label>
-          	<select class="sort-by">
-          	  <option value="manual">{{ 'collections.sorting.featured' | t }}</option>
-              <option value="price-ascending">{{ 'collections.sorting.price_ascending' | t }}</option>
-              <option value="price-descending">{{ 'collections.sorting.price_descending' | t }}</option>
-              <option value="title-ascending">{{ 'collections.sorting.az' | t }}</option>
-              <option value="title-descending">{{ 'collections.sorting.za' | t }}</option>
-              <option value="created-ascending">{{ 'collections.sorting.date_ascending' | t }}</option>
-              <option value="created-descending">{{ 'collections.sorting.date_descending' | t }}</option>
-              <option value="best-selling">{{ 'collections.sorting.best_selling' | t }}</option>
-          	</select>           
-          </div>        
-        {% endif %}
-      </div>
-      <!-- End sort collection -->
+		<div class="col-md-9">
+			<div>
+				<h2 class="collection-title">{{ collection.title }}</h2>
+				{% if collection.description != "" %}<p>{{ collection.description }}</p>{% endif %}
+			</div>
 
-      <!-- Begin collection description -->
-      {% if collection.description != "" %}
-        {{ collection.description }}
-      {% endif %}
-      <!-- End collection description -->
+			<hr>
 
-    </div>
-  </div>
-  <!-- End collection info -->
+			<div class="row">
+				<div class="col-sm-3 col-xs-6 total-products">
+					{{ collection.all_products_count }} {{ collection.all_products_count | pluralize: 'Item', 'Items' }} found
+				</div>
+				<div class="col-xs-6 col-sm-3 col-sm-offset-6">
+					{% comment %}<label for="sort-by">Sort by</label> {% endcomment %}
+					<select id="sort-by" class="form-control">
+						<option value="sort-by">Sort by</option>
+						<option value="manual">Featured</option>
+						<option value="price-ascending">Price: Low to High</option>
+						<option value="price-descending">Price: High to Low</option>
+						<option value="title-ascending">A-Z</option>
+						<option value="title-descending">Z-A</option>
+						<option value="created-ascending">Oldest to Newest</option>
+						<option value="created-descending">Newest to Oldest</option>
+						<option value="best-selling">Best Selling</option>
+					</select>
+				</div>
+			</div>
 
-  {% if collection.products.size == 0 %}
+			<div class="row">
+				{% for product in collection.products %}
+				{% include 'product-loop' %}
+				{% endfor %}
+			</div>
 
-    {% include 'helper-default-products' %}
+			{% if paginate.pages > 1 %}
+			<div class="paginate">
+				{{ paginate | default_pagination }}
+			</div>
+			{% endif %}
 
-  {% endif %}
+		</div>
+	</div>
 
-  <div class="row products">
-    {% for product in collection.products %}
-      {% include 'product-loop' with collection.handle %}
-    {% endfor %}
-  </div>
-
-  {% include 'pagination' %}
-
-  {% endpaginate %}
+	{% endpaginate %}
 
 </div>
 
+{% comment %}script to Sort by products{% endcomment %}
 <script>
-  Shopify.queryParams = {};
-  if (location.search.length) {
-    for (var aKeyValue, i = 0, aCouples = location.search.substr(1).split('&'); i < aCouples.length; i++) {
-      aKeyValue = aCouples[i].split('=');
-      if (aKeyValue.length > 1) {
-        Shopify.queryParams[decodeURIComponent(aKeyValue[0])] = decodeURIComponent(aKeyValue[1]);
-      }
-    }
-  }
-  var collFilters = jQuery('.coll-filter');
-  collFilters.change(function() {
-      var newTags = [];
-      var newURL = '';
-      delete Shopify.queryParams.page;
-      collFilters.each(function() { 
-        if (jQuery(this).val()) {
-          newTags.push(jQuery(this).val());
-        }
-      });
-      {% if collection.handle %}
-      newURL = '/collections/' + '{{ collection.handle }}';
-      if (newTags.length) {
-        newURL += '/' + newTags.join('+');
-      }
-      var search = jQuery.param(Shopify.queryParams);
-      if (search.length) {
-        newURL += '?' + search;
-      }
-      location.href = newURL;    
-      {% else %}
-      if (newTags.length) {
-        Shopify.queryParams.constraint = newTags.join('+');        
-      }
-      else {
-        delete Shopify.queryParams.constraint;
-      }
-      location.search = jQuery.param(Shopify.queryParams).replace(/\+/g, '%20');
-      {% endif %}      
-  });
-  jQuery('.sort-by')
-    .val('{{ collection.sort_by | default: collection.default_sort_by  }}')
-    .bind('change', function() {
-      Shopify.queryParams.sort_by = jQuery(this).val();
-      location.search = jQuery.param(Shopify.queryParams).replace(/\+/g, '%20');
-    });
+	Shopify.queryParams = {};
+	if (location.search.length) {
+		for (var aKeyValue, i = 0, aCouples = location.search.substr(1).split('&'); i < aCouples.length; i++) {
+			aKeyValue = aCouples[i].split('=');
+			if (aKeyValue.length > 1) {
+				Shopify.queryParams[decodeURIComponent(aKeyValue[0])] = decodeURIComponent(aKeyValue[1]);
+			}
+		}
+	}
+	jQuery('#sort-by')
+	.val('{{ collection.sort_by | default: collection.default_sort_by | escape }}')
+	.bind('change', function() {
+		Shopify.queryParams.sort_by = jQuery(this).val();
+		location.search = jQuery.param(Shopify.queryParams).replace(/\+/g, '%20');
+	});
 </script>
