@@ -51,6 +51,10 @@ header{
 		font-size: 18px;
 		line-height: 1.5;
 	}
+
+	.list-inline > li > a{
+		color: $text-muted;
+	}
 }
 
 //== Helper classes
@@ -73,14 +77,16 @@ header{
 
 .subnav{
 	@include list-unstyled;
+	margin-bottom: $line-height-computed ;
 }
 
 .subnav-title{
+	display: block;
 	font-size: 13px;
-	margin-top: ($line-height-computed / 2);
-	margin-bottom: ($line-height-computed / 2);
-	letter-spacing: $base-letter-spacing;
+	font-weight: 500;
 	text-transform: uppercase;
+	letter-spacing: $base-letter-spacing;
+	margin-bottom: ($line-height-computed / 2);
 }
 
 //== Product loop
@@ -166,4 +172,30 @@ header{
 			color: $link-gray-color; 
 		}
 	}
+}
+
+//== Panels
+//
+
+.panel{
+	box-shadow:none;
+
+	&.panel-default > .panel-heading{
+		border-top: 1px solid #ccc;
+		text-transform: uppercase;
+		font-weight: 400;
+		letter-spacing: $base-letter-spacing; 
+	}
+
+	.panel-title > a{
+		display: block;
+
+		&:hover, &:focus{
+			text-decoration: none;
+		}
+	}
+}
+
+.panel-group .panel+.panel{
+	margin-top: 0;
 }

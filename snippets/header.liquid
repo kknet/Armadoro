@@ -1,0 +1,42 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<ul class="list-inline">
+				{% for link in linklists.toolbar-menu.links %}
+				<li {% if link.active %}class="active"{% endif %}><a href="{{ link.url }}">{{ link.title }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="col-md-6">
+			<ul class="list-inline text-right">
+				{% if shop.customer_accounts_enabled %}
+				<li>
+					{% if customer %}
+					Logged in as <a href="/account">{{ customer.first_name }}</a> · {{ 'Log out' | customer_logout_link }}
+					{% else %}
+					{{ 'Log in' | customer_login_link }}
+					{% if shop.customer_accounts_optional %}
+					or {{ 'Create an account' | customer_register_link }}
+					{% endif %}
+					{% endif %}
+				</li>
+				{% endif %}
+				<li>
+					<a href="/cart">{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+
+
+	<form action="/search" method="get" role="search">
+		<input name="q" type="search" id="search-field" placeholder="Search store..." value="{{ search.terms | escape }}" />
+		<input type="submit" id="search-submit" value="Search" />
+	</form>
+
+	<h1 class="logo">
+		<a href="/">{{ shop.name }}</a>
+		<small class="tagline">One of the kind jewelry from Greece</small>
+	</h1>
+</div>
