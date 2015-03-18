@@ -6,24 +6,13 @@
 	<div class="row">
 
 		<div class="col-md-3">
-			{% if collection.all_tags.size > 0 %}
+			
 			<ul class="subnav">
-				<li class="{% unless current_tags %} active{% endunless %}">
-					{{ 'All' | link_to_remove_tag: current_tags.first }}
-				</li>
-				{% for tag in collection.all_tags %}
-				{% if current_tags contains tag %}
-				<li class="active">
-					{{ tag | link_to_remove_tag: tag }}
-				</li>
-				{% else %}
 				<li>
-					{{ tag | link_to_tag: tag }}
+					{{ 'All' | link_to: '/collections/all' }}
 				</li>
-				{% endif %}
-				{% endfor %}  
 			</ul>
-			{% endif %}
+
 			<ul class="list-unstyled">
 				{% for link in linklists.main-menu.links %}
 				{% assign child_list_handle = link.title | handleize %}

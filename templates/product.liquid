@@ -1,4 +1,4 @@
-{% assign add_to_cart = 'Add to cart' %}
+{% assign add_to_cart = 'Add to Shopping Bag' %}
 {% assign sold_out = 'Sold Out' %}
 {% assign unavailable = 'Unavailable' %}
 
@@ -60,13 +60,9 @@
 							<span class="product-price on-sale" itemprop="price">{{ variant.price | money }}</span>
 							<s class="product-compare-price">{{ variant.compare_at_price | money }}</s>
 							{% else %}
-							<span class="product-price" itemprop="price">{{ variant.price | money }}</span>
+							<div class="product-price" itemprop="price">{{ variant.price | money }}</div>
 							{% endif %}
 						</p>
-					</div>
-
-					<div id="product-add">
-						<input type="submit" name="add" id="add" class="btn btn-danger btn-lg" value="{{ add_to_cart | escape }}">
 					</div>
 
 					{% assign hide_default_title = false %}
@@ -74,15 +70,25 @@
 					{% assign hide_default_title = true %}
 					{% endif %}
 
-					<div id="product-variants" class="{% if hide_default_title %} hidden{% endif %}">
-						<select id="product-select" name="id">
+					<div id="product-variants" class="form-inline {% if hide_default_title %}hidden{% endif %}">
+						<select id="product-select" class="form-control" name="id">
 							{% for variant in product.variants %}
-							<option{% if variant == product.selected_or_first_available_variant %} selected{% endif %} value="{{ variant.id }}">
-							{{ variant.title }} - {{ variant.price | money }}
-						</option>
-						{% endfor %}
-					</select>
-				</div> 
+								<option{% if variant == product.selected_or_first_available_variant %} selected{% endif %} value="{{ variant.id }}">
+								{{ variant.title }} - {{ variant.price | money }}
+								</option>
+							{% endfor %}
+						</select>
+					</div>
+
+					<div class="row product-actions">
+						<div class="col-sm-6" id="product-add">
+							<input type="submit" name="add" id="add" class="btn btn-danger btn-block" value="{{ add_to_cart | escape }}">
+						</div>
+						<div class="col-sm-6">
+							<button class="btn btn-default btn-block">Add to Wish List</button>
+						</div>
+					</div>
+
 
 				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 					<div class="panel panel-default">
@@ -129,6 +135,8 @@
 					</div>
 				</div>
 
+				<p class="text-muted">Product code: {{ product.variants.first.sku }}</p>
+
 				<div id="backorder" class="hidden">
 					<p>{{ '%s is back-ordered. We will ship it separately in 10 to 15 days.' | replace: '%s', '<span id="selected-variant"></span>' }}</p>
 				</div>
@@ -153,58 +161,60 @@
 </form>
 </div>
 
+{% include 'related-products' %}
+
 <script>
-  
-var selectCallback = function(variant, selector) {
-  if (variant) {
-    
+
+	var selectCallback = function(variant, selector) {
+		if (variant) {
+
     // Swap image.
     if (variant.featured_image) {
       var newImage = variant.featured_image; // New image object.
       var mainImageDomEl = jQuery('.product-photo-container img')[0]; // DOM element of main image we need to swap.
       Shopify.Image.switchImage(newImage, mainImageDomEl, switchImage); // Define switchImage (the callback) in your theme's JavaScript file.
-    }
-    
+  }
+
     // Selected a valid variant that is available.
     if (variant.available) {
-          
+
       // Enabling add to cart button.
       jQuery('#add').removeClass('disabled').prop('disabled', false).val({{ add_to_cart | json }});
-    
+
       // If item is backordered yet can still be ordered, we'll show special message.
       if (variant.inventory_management && variant.inventory_quantity <= 0) {
-        jQuery('#selected-variant').html({{ product.title | json }}{% unless hide_default_title %} + ' - ' + variant.title{% endunless %});
-        jQuery('#backorder').removeClass("hidden");
+      	jQuery('#selected-variant').html({{ product.title | json }}{% unless hide_default_title %} + ' - ' + variant.title{% endunless %});
+      	jQuery('#backorder').removeClass("hidden");
       } else {
-        jQuery('#backorder').addClass("hidden");
+      	jQuery('#backorder').addClass("hidden");
       }
       
-    } else {
+  } else {
       // Variant is sold out.
       jQuery('#backorder').addClass('hidden');
       jQuery('#add').val({{ sold_out | json }}).addClass('disabled').prop('disabled', true);       
-    }
-    
+  }
+
     // Whether the variant is in stock or not, we can update the price and compare at price.
     if ( variant.compare_at_price > variant.price ) {
-      jQuery('#product-price').html('<span class="product-price on-sale">'+ Shopify.formatMoney(variant.price, "{{ shop.money_format }}") +'</span>'+'&nbsp;<s class="product-compare-price">'+Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}")+ '</s>');
+    	jQuery('#product-price').html('<span class="product-price on-sale">'+ Shopify.formatMoney(variant.price, "{{ shop.money_format }}") +'</span>'+'&nbsp;<s class="product-compare-price">'+Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}")+ '</s>');
     } else {
-      jQuery('#product-price').html('<span class="product-price">'+ Shopify.formatMoney(variant.price, "{{ shop.money_format }}") + '</span>' );
+    	jQuery('#product-price').html('<span class="product-price">'+ Shopify.formatMoney(variant.price, "{{ shop.money_format }}") + '</span>' );
     }        
-  } else {
+} else {
     // variant doesn't exist.
     jQuery('#product-price').empty();
     jQuery('#backorder').addClass('hidden');
     jQuery('#add').val({{ unavailable | json }}).addClass('disabled').prop('disabled', true);
-  }
+}
 };
-  
+
 jQuery(function($) {
-  new Shopify.OptionSelectors('product-select', { product: {{ product | json }}, onVariantSelected: selectCallback, enableHistoryState: true });
-  
+	new Shopify.OptionSelectors('product-select', { product: {{ product | json }}, onVariantSelected: selectCallback, enableHistoryState: true });
+
   // Add label if only one product option and it isn't 'Title'.
   {% if product.options.size == 1 and product.options.first != 'Title' %}
-    $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first }}</label>');
+  $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first }}</label>');
   {% endif %}
 });
 Shopify.Image.preload({{ product.images | json }}, 'grande');

@@ -8,11 +8,11 @@
 //
 //## Gray and brand colors for use across Bootstrap.
 
-// $gray-base:              #000
+$gray-base:              #000;
 // $gray-darker:            lighten($gray-base, 13.5%) // #222
 // $gray-dark:              lighten($gray-base, 20%)   // #333
 // $gray:                   lighten($gray-base, 33.5%) // #555
-// $gray-light:             lighten($gray-base, 46.7%) // #777
+$gray-light:             lighten($gray-base, 60%);
 // $gray-lighter:           lighten($gray-base, 93.5%) // #eee
 
 // $brand-primary:         darken(#428bca, 6.5%) // #337ab7
@@ -41,13 +41,13 @@ $link-color:            #333;
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-// $font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif
-$font-family-serif:      'Lora', Georgia, "Times New Roman", Times, serif;
+$font-family-sans-serif:  	"proxima-nova", Helvetica, Arial, sans-serif;
+$font-family-serif:			"Palatino Linotype", "Book Antiqua", Palatino, serif;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 // $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace
 // $font-family-base:        $font-family-sans-serif
 
-$font-size-base:          12px;
+$font-size-base:          13px;
 // $font-size-large:         ceil(($font-size-base * 1.25)) // ~18px
 // $font-size-small:         ceil(($font-size-base * 0.85)) // ~12px
 
