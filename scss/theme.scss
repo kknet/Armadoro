@@ -45,8 +45,8 @@
 
 $base-letter-spacing: 	.1em;
 
-$link-gray-color: 		#666;
-$global-border:			#ccc;
+$link-gray-color: 		#666666;
+$global-border:			#ebebeb;
 
 
 //== Mixin
@@ -135,7 +135,7 @@ header{
 
 .product{
 	text-align: center;
-	margin-top: $line-height-computed;
+	margin-bottom: $line-height-computed;
 }
 
 .total-products{
@@ -164,8 +164,8 @@ header{
 	}
 
 	a > img, > img {
-		max-width: 100%;
-		height: auto;
+		// max-width: 100%;
+		// height: auto;
 	}
 }
 
@@ -269,6 +269,34 @@ header{
 	}
 }
 
+// pagination
+
+.pagination > a{
+	top: 50%;
+	margin-top: -20px;
+	position: fixed;
+	z-index: 71;
+	text-align: center;
+	font-size: 24px;
+	display: block;
+	padding: 7px 16px;
+	line-height: 1;
+	border: 1px solid #ccc;
+
+	&:hover{
+		text-decoration: none;
+	}
+
+}
+
+.pagination-previous{
+	left: 1%;
+}
+
+.pagination-next{
+	right: 1%;
+}
+
 //== Panels
 //
 
@@ -293,6 +321,10 @@ header{
 	}
 }
 
-.panel-group .panel+.panel{
-	margin-top: 0;
+.panel-group {
+	border-bottom:  1px solid $global-border;
+
+	.panel+.panel{
+		margin-top: 0;
+	}
 }

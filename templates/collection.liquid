@@ -70,7 +70,7 @@
 
 			<div class="row">
 				{% for product in collection.products %}
-				{% include 'product-loop' %}
+				{% include 'product-loop' with 'col-sm-4' %}
 				{% else %}
 				<p>There are no products in this view.</p>
 				{% endfor %}

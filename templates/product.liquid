@@ -75,19 +75,37 @@
 							{% for variant in product.variants %}
 								<option{% if variant == product.selected_or_first_available_variant %} selected{% endif %} value="{{ variant.id }}">
 								{{ variant.title }} - {{ variant.price | money }}
-								</option>
+							</option>
 							{% endfor %}
 						</select>
 					</div>
+						
 
-					<div class="row product-actions">
-						<div class="col-sm-6" id="product-add">
-							<input type="submit" name="add" id="add" class="btn btn-danger btn-block" value="{{ add_to_cart | escape }}">
-						</div>
-						<div class="col-sm-6">
-							<button class="btn btn-default btn-block">Add to Wish List</button>
+					<!-- Ring size guide Modal -->
+					<div class="modal fade" id="sizeGuide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title" id="myModalLabel">{{ pages.ring-size-guide.title }}</h4>
+								</div>
+								<div class="modal-body">
+									{{ pages.ring-size-guide.content }}
+								</div>
+							</div>
 						</div>
 					</div>
+					
+				<div class="row product-actions">
+					<div class="col-sm-6 form-group" id="product-add">
+						<input type="submit" name="add" id="add" class="btn btn-danger btn-block" value="{{ add_to_cart | escape }}">
+					</div>
+					<div class="col-sm-6">
+						<button class="btn btn-default btn-block">Add to Wish List</button>
+					</div>
+				</div>
 
 
 				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -109,7 +127,7 @@
 						<div class="panel-heading" role="tab" id="headingTwo">
 							<h4 class="panel-title">
 								<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#returns" aria-expanded="false" aria-controls="collapseTwo">
-									Returns
+									{{ pages.returns.title }}
 								</a>
 							</h4>
 						</div>
@@ -119,23 +137,18 @@
 							</div>
 						</div>
 					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading" role="tab" id="headingTwo">
-							<h4 class="panel-title">
-								<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#ringSizeGuide" aria-expanded="false" aria-controls="collapseTwo">
-									Ring Size Guide
-								</a>
-							</h4>
-						</div>
-						<div id="ringSizeGuide" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-							<div class="panel-body">
-								{{ pages.ring-size-guide.content }}
-							</div>
-						</div>
-					</div>
 				</div>
 
-				<p class="text-muted">Product code: {{ product.variants.first.sku }}</p>
+				<p>
+					<strong>Product code:</strong> <br>
+					{{ product.variants.first.sku }}
+				</p>
+				<p>
+					<strong>In collection</strong> <br>
+					{% for collection in product.collections %}
+						<a href="{{collection.url}}">{{ collection.title }}</a>{% unless forloop.last %},&nbsp;{% endunless %}
+					{% endfor %}
+				</p>
 
 				<div id="backorder" class="hidden">
 					<p>{{ '%s is back-ordered. We will ship it separately in 10 to 15 days.' | replace: '%s', '<span id="selected-variant"></span>' }}</p>
@@ -143,14 +156,14 @@
 
 				{% if collection %}
 				{% if collection.previous_product or collection.next_product %}
-				<div>     
+				<div class="pagination">     
 					{% if collection.previous_product %}
 					{% capture prev_url %}{{ collection.previous_product}}#content{% endcapture %}
-					<span class="left">{{ '&larr; Previous Product' | link_to: prev_url }}</span>
+						<a class="pagination-previous" href="{{prev_url}}"><i class="ion-ios-arrow-left"></i></a>
 					{% endif %}
 					{% if collection.next_product %}
 					{% capture next_url %}{{ collection.next_product}}#content{% endcapture %}
-					<span class="right">{{ 'Next Product &rarr;' | link_to: next_url }}</span>
+						<a class="pagination-next" href="{{next_url}}"><i class="ion-ios-arrow-right"></i></a>
 					{% endif %}
 				</div>
 				{% endif %}
@@ -214,7 +227,12 @@ jQuery(function($) {
 
   // Add label if only one product option and it isn't 'Title'.
   {% if product.options.size == 1 and product.options.first != 'Title' %}
-  $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first }}</label>');
+  $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first }}&nbsp;</label>');
+  {% endif %}
+  
+  // Ring size guide modal trigger 
+  {% if product.type contains 'Ring' %}
+  $('.selector-wrapper:eq(0)').append('&nbsp;&nbsp;&nbsp;<a class="form-control-static" data-toggle="modal" data-target="#sizeGuide">{{ pages.ring-size-guide.title }}</a>');
   {% endif %}
 });
 Shopify.Image.preload({{ product.images | json }}, 'grande');

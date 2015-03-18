@@ -1,4 +1,6 @@
-<div class="product col-sm-4 {% cycle '','','last' %}">
+{% if product-loop == '' %}{% assign product-loop = 'col-sm-4' %}{% endif %}
+
+<div class="product {{ product-loop }}">
 	<div class="product-thumb">
 		<a href="{{ product.url | within: collection }}">
 			<img src="{{ product.featured_image.src | product_img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}" />
