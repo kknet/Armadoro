@@ -10,20 +10,24 @@
 		<div class="col-md-6">
 			<ul class="list-inline text-right">
 				{% if shop.customer_accounts_enabled %}
+				{% if customer %}
 				<li>
-					{% if customer %}
 					Logged in as <a href="/account">{{ customer.first_name }}</a> · {{ 'Log out' | customer_logout_link }}
-					{% else %}
+				</li>
+				{% else %}
+				<li>
 					{{ 'Log in' | customer_login_link }}
+				</li>
+				<li>
 					{% if shop.customer_accounts_optional %}
-					or {{ 'Create an account' | customer_register_link }}
-					{% endif %}
+					{{ 'Register' | customer_register_link }}
 					{% endif %}
 				</li>
 				{% endif %}
+				{% endif %}
 				<li>
-				<i class="ion-bag"></i>
-				<a href="/cart">{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</a>
+					<i class="ion-bag"></i>
+					<a href="/cart">{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</a>
 				</li>
 			</ul>
 		</div>

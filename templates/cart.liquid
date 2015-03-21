@@ -26,23 +26,22 @@
 		{% for item in cart.items %}    
 		<div class="cart-item">
 			<div class="row">
-				<div class="col-sm-7 col-xs-8">
+				<div class="col-sm-7 col-xs-5">
 					<div class="media">
-						<div class="media-left media-middle">
+						<div class="media-left hidden-xs">
 							<a href="{{ item.product.url }}">
-								<input class="form-control item-qty visible-xs-block" type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}"/>
-								<img class="hidden-xs media-object" src="{{ item.product.featured_image.src | product_img_url: 'small' }}" alt="{{ item.title | escape }}">
+								<img class="media-object" src="{{ item.product.featured_image.src | product_img_url: 'thumb' }}" alt="{{ item.title | escape }}">
 							</a>
 						</div>
 						<div class="media-body">
-							<h5><a href="{{ item.product.url | within: collections.all }}">{{ item.title }}</a></h5>
+							<h5 class="cart-item-title"><a href="{{ item.product.url | within: collections.all }}">{{ item.title }}</a></h5>
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-2 hidden-xs">
 					<h5>{{ item.price | money }}</h5>
 				</div>
-				<div class="col-sm-1 hidden-xs">
+				<div class="col-sm-1 col-xs-3">
 					<input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" class="form-control item-qty" />
 				</div>
 				<div class="col-sm-2 col-xs-4">
@@ -51,8 +50,8 @@
 				</div>
 			</div>
 		</div>
-
 		{% endfor %}
+
 		<div class="row">
 			<div class="cart-options col-md-6 col-md-offset-6">
 				<h3>Subtotal: {{ cart.total_price | money }}</h3>
@@ -62,7 +61,7 @@
 						<input type="submit" name="update" value="Update cart" class="btn btn-default btn-block" />
 					</div>
 					<div class="col-sm-7 form-group">
-						<input type="submit" name="checkout" value="Proceed to check out" class="btn btn-primary btn-block"/>
+						<input type="submit" name="checkout" value="Proceed to Check out" class="btn btn-primary btn-block"/>
 					</div>
 				</div>
 

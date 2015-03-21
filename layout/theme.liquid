@@ -26,6 +26,8 @@
 	{{ content_for_header }}
 
 	{{ 'theme.css' | asset_url | stylesheet_tag }}
+	{{ 'royalslider.css' | asset_url | stylesheet_tag }}
+	{{ 'rs-default.css' | asset_url | stylesheet_tag }}
 	{{ 'social/social-icons.css' | global_asset_url | stylesheet_tag }}
 	{{ '//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' | stylesheet_tag }}
 
@@ -83,6 +85,38 @@
 {{ 'jquery.fancybox.js' | asset_url | script_tag }}{% endcomment %}
 
 {{ 'bootstrap.min.js' | asset_url | script_tag }}
+{{ 'jquery.royalslider.min.js' | asset_url | script_tag }}
+
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$('#product-img-thumb').royalSlider({
+			fullscreen: {
+				enabled: true,
+				nativeFS: true
+			},
+			controlNavigation: 'thumbnails',
+			autoScaleSlider: true, 
+			autoScaleSliderWidth: 960,     
+			autoScaleSliderHeight: 850,
+			loop: false,
+			imageScaleMode: 'fit-if-smaller',
+			navigateByClick: true,
+			numImagesToPreload:2,
+			arrowsNav:true,
+			arrowsNavAutoHide: true,
+			arrowsNavHideOnTouch: true,
+			keyboardNavEnabled: true,
+			fadeinLoadedSlide: true,
+			globalCaption: false,
+			globalCaptionInside: false,
+			thumbs: {
+				appendSpan: true,
+				firstMargin: true,
+				paddingBottom: 4
+			}
+		});
+	});
+</script>
 
 </body>
 </html>
