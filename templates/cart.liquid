@@ -1,96 +1,88 @@
 <div id="cart">
-  
-  <!-- Begin empty cart -->
-  {% if cart.item_count == 0 %}
-  <div class="row">
-    <div class="span12 expanded-message">
-      <br>
-      <br>
-      <h2 class="tc">{{ 'cart.general.empty' | t }}</h2>
-    </div>
-  </div>
-  <!-- End empty cart -->
-  
-  <!-- Begin cart -->
-  {% else %}
-  <div class="row">
-    <div class="span12">
-      <h1>{{ 'cart.general.title' | t }}</h1>
-      <form action="/cart" method="post" id="cartform">
-        <table>
-          <thead>
-            <tr>
-              <th class="image">{{ 'cart.label.product' | t }}</th>
-              <th class="item">&nbsp;</th>
-              <th class="qty">{{ 'cart.label.quantity' | t }}</th>
-              <th class="price">{{ 'cart.label.price' | t }}</th>
-              <th class="remove">&nbsp;</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for item in cart.items %}
-            <tr>
-              <td class="image">
-                <div class="product_image">
-                  <a href="{{ item.url }}">
-                    <img src="{{ item | img_url: 'small' }}"  alt="{{ item.title | escape }}" />
-                  </a>
-                </div>
-              </td>
-              <td class="item">
-                <a href="{{ item.url }}">
-                  <strong>{{ item.product.title }}</strong>
-                  {% if item.product.variants.size > 1 %}
-                  <span class="variant_title">{{ item.variant.title }}</span>
-                  {% endif %}
-                </a>
-              </td>
-              <td class="qty">
-                <input type="text" size="4" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" onfocus="this.select();" class="tc item-quantity" />
-              </td>
-              <td class="price">{{ item.line_price | money }}</td>
-              <td class="remove"><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="cart">{{ 'cart.general.remove' | t }}</a></td>
-            </tr>
-            {% endfor %}
-            <tr class="summary">
-              <td class="image">&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td class="price"><span class="total"><strong>{{ cart.total_price | money }}</strong></span></td>
-              <td>&nbsp;</td>
-            </tr>
-          </tbody>
-        </table>
+	<div class="page-header">
+		<h1 class="cart-header">{{ cart.item_count }} items in your basket</h1>
+	</div>
 
-        <div class="span6 inner-left inner-right">
-          <div class="checkout-buttons clearfix">
-            <label for="note">{{ 'cart.general.note' | t }}</label>
-            <textarea id="note" name="note" rows="10" cols="50">{{ cart.note }}</textarea>
-          </div>
-        </div>
+	{% if cart.item_count > 0 %}
 
-        <div class="span6 cart-buttons inner-right inner-left">
-          <div class="buttons clearfix">
-            <input type="submit" id="checkout" class="btn" name="checkout" value="{{ 'cart.general.checkout' | t }}" />
-            <input type="submit" id="update-cart" class="btn" name="update" value="{{ 'cart.general.update' | t }}" />
-          </div>
-        </div>
-        
-        {% if additional_checkout_buttons %}        
-        <div class="row">
-          <div class="extra-checkout-buttons span6">
-          {{ content_for_additional_checkout_buttons }}
-          </div>
-        </div>
-        {% endif %}
+	<form action="/cart" method="post">
+		<div class="cart-item-header">
+			<div class="row">
+				<div class="col-sm-7 col-xs-8">
+					Product Description
+				</div>
+				<div class="col-sm-2 hidden-xs">
+					Regular Price
+				</div>
+				<div class="col-sm-1 hidden-xs">
+					QTY
+				</div>
+				<div class="col-sm-2 col-xs-4">
+					Total Price
+				</div>
+			</div>
+		</div>
 
-      </form>
-    </div>
-  </div>
-  {% endif %}
-  
-  
-  <!-- End cart -->
-  
-</div> 
+		{% for item in cart.items %}    
+		<div class="cart-item">
+			<div class="row">
+				<div class="col-sm-7 col-xs-8">
+					<div class="media">
+						<div class="media-left media-middle">
+							<a href="{{ item.product.url }}">
+								<input class="form-control item-qty visible-xs-block" type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}"/>
+								<img class="hidden-xs media-object" src="{{ item.product.featured_image.src | product_img_url: 'small' }}" alt="{{ item.title | escape }}">
+							</a>
+						</div>
+						<div class="media-body">
+							<h5><a href="{{ item.product.url | within: collections.all }}">{{ item.title }}</a></h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-2 hidden-xs">
+					<h5>{{ item.price | money }}</h5>
+				</div>
+				<div class="col-sm-1 hidden-xs">
+					<input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" class="form-control item-qty" />
+				</div>
+				<div class="col-sm-2 col-xs-4">
+					<a class="close" href="/cart/change?line={{ forloop.index }}&quantity=0">&times;</a>
+					<h5>{{ item.line_price | money }}</h5>
+				</div>
+			</div>
+		</div>
 
+		{% endfor %}
+		<div class="row">
+			<div class="cart-options col-md-6 col-md-offset-6">
+				<h3>Subtotal: {{ cart.total_price | money }}</h3>
+				
+				<div class="row">
+					<div class="col-sm-5 form-group">
+						<input type="submit" name="update" value="Update cart" class="btn btn-default btn-block" />
+					</div>
+					<div class="col-sm-7 form-group">
+						<input type="submit" name="checkout" value="Proceed to check out" class="btn btn-primary btn-block"/>
+					</div>
+				</div>
+
+				{% if additional_checkout_buttons %}
+				<p class="additional-checkout-buttons">
+					{{ content_for_additional_checkout_buttons }}
+				</p>
+				{% endif %}
+
+			</div>
+		</div>
+
+	</form>
+
+	{% else %}
+
+	<div>
+		<h2>It appears that your cart is currently empty!</h2>
+		<h4>You can continue browsing <a href="/collections/all">here</a>.</h4>
+	</div>
+
+	{% endif %}	
+</div>
