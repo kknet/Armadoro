@@ -5,7 +5,11 @@
 				{% for link in linklists.toolbar-menu.links %}
 				<li {% if link.active %}class="active"{% endif %}><a href="{{ link.url }}">{{ link.title }}</a></li>
 				{% endfor %}
+				<li>
+					{% include 'currency-picker' %}
+				</li>
 			</ul>
+
 		</div>
 		<div class="col-md-6">
 			<ul class="list-inline text-right">
@@ -29,16 +33,17 @@
 					<i class="ion-bag"></i>
 					<a href="/cart">{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</a>
 				</li>
+				<li>
+					<form action="/search" method="get" role="search">
+						<input name="q" type="search" id="search-field" class="form-control input-sm" placeholder="Search store..." value="{{ search.terms | escape }}" />
+					</form>
+				</li>
 			</ul>
 		</div>
 	</div>
 
 
 
-	<form action="/search" method="get" role="search">
-		<input name="q" type="search" id="search-field" placeholder="Search store..." value="{{ search.terms | escape }}" />
-		<input type="submit" id="search-submit" value="Search" />
-	</form>
 
 	<h1 class="logo">
 		<a href="/">{{ shop.name }}</a>

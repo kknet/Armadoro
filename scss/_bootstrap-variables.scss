@@ -340,7 +340,7 @@ $container-large-desktop:      (940px + $grid-gutter-width);
 //##
 
 // Basics of a navbar
-$navbar-height:                    30px;
+$navbar-height:                    34px;
 // $navbar-margin-bottom:             $line-height-computed
 // $navbar-border-radius:             $border-radius-base
 // $navbar-padding-horizontal:        floor(($grid-gutter-width / 2))
@@ -391,9 +391,9 @@ $navbar-inverse-link-active-bg:             $navbar-inverse-bg;
 // $navbar-inverse-brand-hover-bg:             transparent
 
 // Inverted navbar toggle
-// $navbar-inverse-toggle-hover-bg:            #333
+$navbar-inverse-toggle-hover-bg:            $navbar-inverse-bg;
 // $navbar-inverse-toggle-icon-bar-bg:         #fff
-// $navbar-inverse-toggle-border-color:        #333
+$navbar-inverse-toggle-border-color:        $navbar-inverse-bg;
 
 //== Navs
 //
