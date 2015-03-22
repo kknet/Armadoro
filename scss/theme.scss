@@ -35,13 +35,15 @@
 // Import Bootstrap for Sass
 @import "bootstrap";
 
+// @import "typography";
+
 
 //
 // Custom CSS classes here
 // --------------------------------------------------
 
 //== Theme Variables
-//
+// --------------------------------------------------
 
 $base-letter-spacing: 	.1em;
 
@@ -49,8 +51,16 @@ $link-gray-color: 		#666666;
 $global-border:			#ebebeb;
 
 
+//== Misc
+// --------------------------------------------------
+
+ul ,ol {
+	padding-left: 15px;
+}
+
+
 //== Mixin
-//
+// --------------------------------------------------
 
 @mixin uppercase(){
 	text-transform: uppercase;
@@ -58,18 +68,22 @@ $global-border:			#ebebeb;
 }
 
 //== Html 5 tags
-//
+// --------------------------------------------------
 
 footer{
 	margin-top: ($line-height-computed * 2);
 }
 
 header{
-	margin: $line-height-computed 0;
+	margin: 0;
+
+	@media (min-width: $grid-float-breakpoint){
+		margin: 0 0 $line-height-computed;
+	}
 
 	.logo{
 		text-align: center;
-		text-transform: uppercase;
+		@include uppercase();
 
 		> a{
 			color: $text-color;
@@ -90,27 +104,81 @@ header{
 	}
 }
 
+// Wells
+// --------------------------------------------------
+
+.well{
+	@include box-shadow(none);
+}
 
 //== Helper classes
-//
+// --------------------------------------------------
 
 .btn{
-	@include uppercase();
+	// @include uppercase();
+}
+
+.btn-secondary{
+	border: 2px solid #2F2F33;
+}
+
+a.btn-search {
+	padding: 2px 7px 3px !important;
+}
+
+.ion-lg {
+	font-size: 18px;
+	line-height: 1;
+	position: relative;
+	top: 3px;
 }
 
 .section { margin: $line-height-computed 0px; }
 .margin-remove { margin: 0px !important; }
 
-//== Navbar nav links
-//
+//== Navbar
+// --------------------------------------------------
 
-.navbar-nav > li > a{
+.navbar-left > li > a, .navbar-brand{
 	@include uppercase();
 }
 
+.navbar-secondary{
+	border-top: 1px solid $navbar-inverse-border;
+	$shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.1);
+	@include box-shadow($shadow);
+}
+
+.navbar-toggle {
+	float: left;
+	margin-left: $navbar-padding-horizontal;
+}
+
+.navbar-collapse{
+	padding-left: 0;
+}
+
+.navbar-basket{
+	float: right;
+	margin-right: $navbar-padding-horizontal;
+	@include navbar-vertical-align(34px);
+	padding: 9px 10px;
+	line-height: 16px;
+	color: #fff;
+
+	@media (min-width: $grid-float-breakpoint) {
+		display: none;
+	}
+}
+
+#search-field.form-control{
+	border: 0;
+	background: transparent;
+	@include box-shadow(none);
+}
 
 //== Form errors
-//
+// --------------------------------------------------
 
 .errors{
 	@extend .alert;
@@ -123,7 +191,7 @@ header{
 }
 
 //== styles for subnav
-//
+// --------------------------------------------------
 
 .subnav{
 	@include list-unstyled;
@@ -139,7 +207,7 @@ header{
 }
 
 //== Product loop
-//
+// --------------------------------------------------
 
 .product{
 	text-align: center;
@@ -178,7 +246,7 @@ header{
 }
 
 //== Section title
-//
+// --------------------------------------------------
 
 .section-header{
 	text-align: center;
@@ -194,8 +262,7 @@ header{
 	}
 
 	.section-header-title{
-		font-family: $font-family-serif;
-		font-size: 20px;
+		font-size: 16px;
 		line-height: 24px;
 		background-color: #FFF;
 		display: inline-block;
@@ -209,7 +276,12 @@ header{
 }
 
 //== product-page
-//
+// --------------------------------------------------
+
+.product-header {
+	font-family: $font-family-serif;
+	text-transform: uppercase;
+}
 
 .product-page{
 	margin-bottom: 80px;
@@ -237,7 +309,7 @@ header{
 
 
 //== category-title
-//
+// --------------------------------------------------
 
 .category-title{
 	text-align: center;
@@ -269,7 +341,7 @@ header{
 }
 
 //== Pagination
-//
+// --------------------------------------------------
 
 .paginate{
 	display: block;
@@ -314,7 +386,7 @@ header{
 }
 
 //== Cart
-//
+// --------------------------------------------------
 
 .cart-item{
 	padding-bottom: $line-height-computed / 2;
@@ -349,7 +421,7 @@ header{
 }
 
 //== Panels
-//
+// --------------------------------------------------
 
 .panel{
 	box-shadow:none;

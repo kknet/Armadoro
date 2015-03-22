@@ -15,7 +15,7 @@ $gray-dark:              lighten($gray-base, 20%);
 $gray-light:             lighten($gray-base, 60%);
 // $gray-lighter:           lighten($gray-base, 93.5%) // #eee
 
-$brand-primary:         #d9534f;
+$brand-primary:         #2F2F33;
 // $brand-success:         #5cb85c
 // $brand-info:            #5bc0de
 // $brand-warning:         #f0ad4e
@@ -41,8 +41,10 @@ $link-color:            #333;
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:  	"proxima-nova", Helvetica, Arial, sans-serif;
-$font-family-serif:			"Palatino Linotype", "Book Antiqua", Palatino, serif;
+// $font-family-sans-serif:  	"proxima-nova", Helvetica, Arial, sans-serif;
+$font-family-sans-serif:  	"Avenir W01", Helvetica, Arial, sans-serif;
+// $font-family-serif:			"Palatino Linotype", "Book Antiqua", Palatino, serif;
+$font-family-serif:			"Linotype Didot W02", serif;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 // $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace
 // $font-family-base:        $font-family-sans-serif
@@ -340,7 +342,7 @@ $container-large-desktop:      (940px + $grid-gutter-width);
 //##
 
 // Basics of a navbar
-$navbar-height:                    34px;
+$navbar-height:                    40px;
 // $navbar-margin-bottom:             $line-height-computed
 // $navbar-border-radius:             $border-radius-base
 // $navbar-padding-horizontal:        floor(($grid-gutter-width / 2))
@@ -727,7 +729,7 @@ $panel-default-heading-bg:    #fff;
 //##
 
 // $well-bg:                     #f5f5f5
-// $well-border:                 darken($well-bg, 7%)
+$well-border:                 rgba(0,0,0,0);
 
 //== Badges
 //

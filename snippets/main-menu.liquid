@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar" style="border-bottom: 1px solid #ebebeb;">
 	
 	<div class="navbar-header">
 		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
@@ -7,10 +7,24 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
+
+		<a href="/cart" class="navbar-basket">
+			<i class="ion-bag"></i>
+			{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})
+		</a>
 	</div>
 
 	<div class="collapse navbar-collapse" id="navbar-collapse">
-		<ul class="nav navbar-nav">
+
+		{% comment %}search input hidden in desktop{% endcomment %}
+		<form action="/search" method="get" class="navbar-form visible-xs-block" role="search">
+			<div class="form-group">
+				<input name="q" type="search" id="search-field" class="form-control" placeholder="Search store..." value="{{ search.terms | escape }}" />
+			</div>
+		</form>
+
+		{% comment %}main site naviagation{% endcomment %}
+		<ul class="nav navbar-nav navbar-left">
 			{% for link in linklists.main-menu.links %}
 			{% assign child_list_handle = link.title | handleize %}
 			{% if linklists[child_list_handle].links != blank %}
@@ -31,5 +45,28 @@
 			{% endif %}
 			{% endfor %}
 		</ul>
+
+		<ul class="nav navbar-nav navbar-right">
+			<li>
+				<a class="btn-search btn-secondary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+					<i class="ion-android-search ion-lg"></i>
+				</a>
+			</li>
+		</ul>
+
+		{% comment %}site;s complementary navigation{% endcomment %}
+		<ul class="nav navbar-nav navbar-secondary visible-xs-block">
+			{% for link in linklists.toolbar-menu.links %}
+			<li {% if link.active %}class="active"{% endif %}><a href="{{ link.url }}">{{ link.title }}</a></li>
+			{% endfor %}
+		</ul>
 	</div>
 </nav>
+
+<div class="collapse" id="collapseExample">
+	<div class="well">
+		<form action="/search" method="get" role="search">
+			<input name="q" type="search" id="search-field" class="form-control input-lg" placeholder="Search store..." value="{{ search.terms | escape }}" />
+		</form>
+	</div>
+</div>

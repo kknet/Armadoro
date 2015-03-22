@@ -1,23 +1,25 @@
-<div class="container">
-	<div class="row">
-		<div class="col-md-6">
-			<ul class="list-inline">
+<header>
+
+	<div class="navbar navbar-default navbar-static-top hidden-xs">
+		<div class="container">
+			<ul class="nav nav navbar-nav">
 				{% for link in linklists.toolbar-menu.links %}
 				<li {% if link.active %}class="active"{% endif %}><a href="{{ link.url }}">{{ link.title }}</a></li>
 				{% endfor %}
-				<li>
-					{% include 'currency-picker' %}
-				</li>
 			</ul>
 
-		</div>
-		<div class="col-md-6">
-			<ul class="list-inline text-right">
+			<div class="navbar-left">
+				{% include 'currency-picker' %}
+			</div>
+
+			{% comment %}navbar-right{% endcomment %}
+			<ul class="nav navbar-nav navbar-right">
 				{% if shop.customer_accounts_enabled %}
 				{% if customer %}
 				<li>
-					Logged in as <a href="/account">{{ customer.first_name }}</a> · {{ 'Log out' | customer_logout_link }}
+					<a href="/account">{{ customer.first_name }} {{customer.last_name}}</a>
 				</li>
+				<li>{{ 'Log out' | customer_logout_link }}</li>
 				{% else %}
 				<li>
 					{{ 'Log in' | customer_login_link }}
@@ -30,23 +32,20 @@
 				{% endif %}
 				{% endif %}
 				<li>
-					<i class="ion-bag"></i>
-					<a href="/cart">{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</a>
-				</li>
-				<li>
-					<form action="/search" method="get" role="search">
-						<input name="q" type="search" id="search-field" class="form-control input-sm" placeholder="Search store..." value="{{ search.terms | escape }}" />
-					</form>
+					<a href="/cart">
+						<i class="ion-bag"></i>
+						{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})
+					</a>
 				</li>
 			</ul>
 		</div>
 	</div>
 
+	<div class="container">
 
-
-
-	<h1 class="logo">
-		<a href="/">{{ shop.name }}</a>
-		<small class="tagline">One of the kind jewelry from Greece</small>
-	</h1>
-</div>
+		<h1 class="logo">
+			<a href="/">{{ shop.name }}</a>
+			<small class="tagline">One of the kind jewelry from Greece</small>
+		</h1>
+	</div>
+</header>

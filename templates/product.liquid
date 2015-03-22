@@ -28,10 +28,10 @@
 					{% if product.images.size > 1 %}
 					<div id="product-img-thumb" class="royalSlider rsDefault">
 						{% for image in product.images %}
-							<a class="rsImg thumbnail" data-rsbigimg="{{ image | img_url: '1024x1024' }}" href="{{ image | img_url: '1024x1024' }}">
-								{{ product.title }}
-								<img class="rsTmb" src="{{ image | img_url: 'small'  }}" alt="{{ product.title | escape }}" />
-							</a>
+						<a class="rsImg thumbnail" data-rsbigimg="{{ image | img_url: '1024x1024' }}" href="{{ image | img_url: '1024x1024' }}">
+							{{ product.title }}
+							<img class="rsTmb" src="{{ image | img_url: 'small'  }}" alt="{{ product.title | escape }}" />
+						</a>
 						{% endfor %}
 					</div>
 					{% endif %}
@@ -40,7 +40,7 @@
 
 					<script type="text/javascript">
 						if ($('#product-img-thumb').length > 0) {
-						    $( ".featured_image" ).addClass( "hidden" );
+							$( ".featured_image" ).addClass( "hidden" );
 						}
 					</script>
 				</div>
@@ -106,10 +106,9 @@
 						<input type="submit" name="add" id="add" class="btn btn-primary btn-block" value="{{ add_to_cart | escape }}">
 					</div>
 					<div class="col-sm-5">
-						<button class="btn btn-default btn-block">To Wish List</button>
+						<button class="btn btn-default btn-block">Add To Wish List</button>
 					</div>
 				</div>
-
 
 				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 					<div class="panel panel-default">
@@ -143,38 +142,47 @@
 				</div>
 
 				<p>
-					<strong>Product code:</strong> <br>
-					{{ product.variants.first.sku }}
-				</p>
-				<p>
-					<strong>In collection</strong> <br>
-					{% for collection in product.collections %}
-					<a href="{{collection.url}}">{{ collection.title }}</a>{% unless forloop.last %},&nbsp;{% endunless %}
-					{% endfor %}
-				</p>
+					<strong>Product code:
+						{{ product.variants.first.sku }}</strong> - Need help? <a href="">Contact us</a>
+					</p>
+					<p>
+						<strong>View More</strong> <br>
+						<ul>
+							{% for collection in product.collections %}
+							<li><a href="{{collection.url}}">View all {{ collection.title }}</a></li>
+							{% endfor %}
+						</ul>
+					</p>
 
-				<div id="backorder" class="hidden">
-					<p>{{ '%s is back-ordered. We will ship it separately in 10 to 15 days.' | replace: '%s', '<span id="selected-variant"></span>' }}</p>
-				</div>
+					
+					{% if settings.social_sharing_products %}
+					<div>
+						{% include 'social-sharing' %}
+					</div>
+					{% endif %}
 
-				{% if collection %}
-				{% if collection.previous_product or collection.next_product %}
-				<div class="pagination">     
-					{% if collection.previous_product %}
-					{% capture prev_url %}{{ collection.previous_product}}#content{% endcapture %}
-					<a class="pagination-previous" href="{{prev_url}}"><i class="ion-ios-arrow-left"></i></a>
+					<div id="backorder" class="hidden">
+						<p>{{ '%s is back-ordered. We will ship it separately in 10 to 15 days.' | replace: '%s', '<span id="selected-variant"></span>' }}</p>
+					</div>
+
+					{% if collection %}
+					{% if collection.previous_product or collection.next_product %}
+					<div class="pagination">     
+						{% if collection.previous_product %}
+						{% capture prev_url %}{{ collection.previous_product}}#content{% endcapture %}
+						<a class="pagination-previous" href="{{prev_url}}"><i class="ion-ios-arrow-left"></i></a>
+						{% endif %}
+						{% if collection.next_product %}
+						{% capture next_url %}{{ collection.next_product}}#content{% endcapture %}
+						<a class="pagination-next" href="{{next_url}}"><i class="ion-ios-arrow-right"></i></a>
+						{% endif %}
+					</div>
 					{% endif %}
-					{% if collection.next_product %}
-					{% capture next_url %}{{ collection.next_product}}#content{% endcapture %}
-					<a class="pagination-next" href="{{next_url}}"><i class="ion-ios-arrow-right"></i></a>
 					{% endif %}
 				</div>
-				{% endif %}
-				{% endif %}
 			</div>
 		</div>
-	</div>
-</form>
+	</form>
 </div>
 
 {% include 'related-products' %}
