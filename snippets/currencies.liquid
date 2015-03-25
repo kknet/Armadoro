@@ -1,7 +1,6 @@
 {{ "//cdn.shopify.com/s/javascripts/currencies.js" | script_tag }}
 {{ "jquery.currencies.min.js" | asset_url | script_tag }}
 
-
 <script>
 
 // Pick your format here:
@@ -31,20 +30,20 @@ var buttons = jQuery('#currencies span');
 
 // If there's no cookie or it's the shop currency.
 if (cookieCurrency == null || cookieCurrency === shopCurrency) {
-  buttons.removeClass('active');
-  jQuery('#currencies span[data-currency=' + shopCurrency + ']').addClass('active');
+  buttons.removeClass('selected');
+  jQuery('#currencies span[data-currency=' + shopCurrency + ']').addClass('selected');
   Currency.currentCurrency = shopCurrency;
 }
 else {
   Currency.convertAll(shopCurrency, cookieCurrency);
-  buttons.removeClass('active');
-  jQuery('#currencies span[data-currency=' + cookieCurrency + ']').addClass('active');
+  buttons.removeClass('selected');
+  jQuery('#currencies span[data-currency=' + cookieCurrency + ']').addClass('selected');
 }
 
 // When customer clicks on a currency button.
 buttons.click(function() {
-  buttons.removeClass('active');
-  jQuery(this).addClass('active');
+  buttons.removeClass('selected');
+  jQuery(this).addClass('selected');
   var newCurrency =  jQuery(this).attr('data-currency');
   Currency.convertAll(Currency.currentCurrency, newCurrency);
 });

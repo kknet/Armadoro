@@ -1,0 +1,28 @@
+.product-title {
+	font-family: $font-family-serif;
+	text-transform: uppercase;
+}
+
+.product-page{
+	margin-bottom: 80px;
+}
+
+.product-price{
+	font-size: 22px;
+	font-weight: 600;
+}
+
+#productPrice, .selector-wrapper, .product-actions{
+	margin-bottom: $line-height-computed;
+}
+
+.single-option-selector{
+	@extend .form-control;
+}
+
+#product-img-thumb {
+	width: 100%;
+	-webkit-user-select: none;
+	-moz-user-select: none;  
+	user-select: none;
+}

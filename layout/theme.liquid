@@ -88,38 +88,24 @@
 {{ 'bootstrap.min.js' | asset_url | script_tag }}
 {{ 'jquery.royalslider.min.js' | asset_url | script_tag }}
 
-<script type="text/javascript">
-	jQuery(document).ready(function($) {
-		$('#product-img-thumb').royalSlider({
-			fullscreen: {
-				enabled: true,
-				nativeFS: true
-			},
-			controlNavigation: 'thumbnails',
-			autoScaleSlider: true, 
-			autoScaleSliderWidth: 960,     
-			autoScaleSliderHeight: 850,
-			loop: false,
-			imageScaleMode: 'fit-if-smaller',
-			navigateByClick: true,
-			numImagesToPreload:2,
-			arrowsNav:true,
-			arrowsNavAutoHide: true,
-			arrowsNavHideOnTouch: true,
-			keyboardNavEnabled: true,
-			fadeinLoadedSlide: true,
-			globalCaption: false,
-			globalCaptionInside: false,
-			thumbs: {
-				appendSpan: true,
-				firstMargin: true,
-				paddingBottom: 4
-			}
-		});
-	});
+{% include 'currencies' %}
+
+<script>
+jQuery(document).ready(function($) {
+    $(".royalSlider").royalSlider({
+    	// general options go gere
+    	autoScaleSlider: true,
+    	imageAlignCenter: true,
+    	imageScaleMode: 'fit-if-smaller',
+    	controlNavigation: 'thumbnails',
+    	thumbs: {
+    		// thumbnails options go gere
+    		arrowsAutoHide: true
+    	}
+    });  
+});
 </script>
 
-{% include 'currencies' %}
 
 </body>
 </html>

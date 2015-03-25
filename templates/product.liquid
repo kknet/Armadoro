@@ -1,4 +1,286 @@
-{% assign add_to_cart = 'Add to Shopping Bag' %}
+<div id="product-page" class="row" itemscope itemtype="http://schema.org/Product">
+	
+	<meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+	<meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
+
+	<div class="col-sm-7">
+		<div class="product-photo-container" id="productPhoto">
+			{% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
+			<img id="productPhotoImg" src="{{ featured_image | img_url: 'grande' }}" alt="{{ featured_image.alt | escape }}">
+		</div>
+
+		<div class="royalSlider rsDefault">
+			{% if product.images.size > 1 %}
+				{% for image in product.images %}
+					<img class="rsImg" src="{{ image.src | img_url: 'grande' }}" data-rsTmb="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}" />
+				{% endfor %}
+			{% endif %}
+		</div>
+
+		{% comment %}{% if product.images.size > 1 %}
+		<div id="gallery-1" class="royalSlider rsDefault">
+			{% for image in product.images %}
+			<a class="rsImg" data-rsBigImg="{{ image.src | img_url: 'original' }}" href="{{ image.src | img_url: 'large' }}" class="product-photo-thumb">
+				<img class="rsTmb" src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+			</a>
+			{% endfor %}			
+		</div>
+		{% endif %}{% endcomment %}
+		
+	</div>
+
+	<div class="col-sm-5">
+
+		{% if settings.product_vendor_enable %}
+		<p class="product-meta text-muted" itemprop="brand">{{ product.vendor }}</p>
+		{% endif %}
+
+		<h2 class="product-title" itemprop="name">{{ product.title }}</h2>
+
+		<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+
+			{% assign variant = product.selected_or_first_available_variant %}
+
+			<meta itemprop="priceCurrency" content="{{ shop.currency }}">
+
+
+			<ul class="list-inline product-meta">
+				<li>
+					<div id="productPrice" class="product-price"  itemprop="price">{{ variant.price | money }}</div>
+				</li>
+				{% if product.compare_at_price_max > product.price %}
+				<li>
+					<s id="comparePrice" class="sale-tag h3 text-muted">
+						{{ variant.compare_at_price | money }}
+					</s>
+				</li>
+				{% endif %}
+
+				{% if settings.product_reviews_enable %}
+				<li class="product-meta--review">
+					<span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+				</li>
+				{% endif %}
+			</ul>
+
+			<link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+
+			<form action="/cart/add" method="post" enctype="multipart/form-data" id="addToCartForm" class="form-inline">
+				<select name="id" id="productSelect" class="product-variants">
+					{% for variant in product.variants %}
+					{% if variant.available %}
+
+					<option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
+
+					{% else %}
+					<option disabled="disabled">
+						{{ variant.title }} - Sold out
+					</option>
+					{% endif %}
+					{% endfor %}
+				</select>
+
+
+				{% if settings.product_quantity_enable %}
+				<div class="form-group">
+					<label for="quantity" class="quantity-selector">Quantity</label>
+					<input type="number" id="quantity" name="quantity" value="1" min="1" class="form-control quantity-selector">
+				</div>
+				{% endif %}
+
+				<div class="row product-actions">
+					<div class="col-sm-7">
+						<button type="submit" name="add" id="addToCart" class="btn btn-primary btn-block">
+							<span id="addToCartText">Add to Shopping Bag</span>
+						</button>
+					</div>
+					<div class="col-sm-5">
+						<button type="submit" class="btn btn-default btn-block">
+							<span>Add to Wish List</span>
+						</button>
+					</div>
+				</div>	
+
+				<span id="variantQuantity" class="variant-quantity"></span>
+			</form>
+
+		</div>
+
+		<!-- Ring size guide Modal -->
+		<div class="modal fade" id="sizeGuide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">{{ pages.ring-size-guide.title }}</h4>
+					</div>
+					<div class="modal-body">
+						{{ pages.ring-size-guide.content }}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingOne">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#description" aria-expanded="true" aria-controls="collapseOne">
+							Product Description
+						</a>
+					</h4>
+				</div>
+				<div id="description" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+					<div class="panel-body rte" itemprop="description">
+						{{ product.description}}
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingTwo">
+					<h4 class="panel-title">
+						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#returns" aria-expanded="false" aria-controls="collapseTwo">
+							{{ pages.returns.title }}
+						</a>
+					</h4>
+				</div>
+				<div id="returns" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+					<div class="panel-body">
+						{{ pages.returns.content }}
+					</div>
+				</div>
+			</div>
+			{% if settings.social_sharing_products %}
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="panel-title">
+						{% include 'social-sharing' %}
+					</div>
+				</div>
+			</div>
+			{% endif %}
+		</div>
+
+		<p><strong>Product code: {{ product.variants.first.sku }}</strong> - Need help? <a href="">Contact us</a></p>
+		<p>
+			<strong>View More</strong> <br>
+			<ul>
+				{% for collection in product.collections %}
+				<li><a href="{{collection.url}}">View all {{ collection.title }}</a></li>
+				{% endfor %}
+			</ul>
+		</p>
+
+	</div>
+</div>
+{% if settings.related_products_enable %}
+{% assign grid_item_width = 'large--one-fifth medium--one-third small--one-half' %}
+{% include 'related-products' %}
+{% endif %}
+
+{% if settings.product_reviews_enable %}
+<hr>
+<div id="shopify-product-reviews" data-id="{{ product.id }}">{{ product.metafields.spr.reviews }}</div>
+{% endif %}
+
+{{ 'option_selection.js' | shopify_asset_url | script_tag }}
+
+<script>
+
+	// Pre-loading product images, to avoid a lag when a thumbnail is clicked, or 
+	// when a variant is selected that has a variant image.
+	Shopify.Image.preload({{ product.images | json }}, 'large');
+	
+	var selectCallback = function(variant, selector) {
+
+		var $addToCart = $('#addToCart'),
+		$productPrice = $('#productPrice'),
+		$comparePrice = $('#comparePrice'),
+		$variantQuantity = $('#variantQuantity'),
+		$quantityElements = $('.quantity-selector, label + .js-qty'),
+		$addToCartText = $('#addToCartText'),
+		$featuredImage = $('#productPhotoImg');
+
+		if (variant) {
+			// Update variant image, if one is set
+			// Call timber.switchImage function in shop.js
+			if (variant.featured_image) {
+				var newImg = variant.featured_image,
+				el = $featuredImage[0];
+				Shopify.Image.switchImage(newImg, el, timber.switchImage);
+			}
+
+			// Select a valid variant if available
+			if (variant.available) {
+				// We have a valid product variant, so enable the submit button
+				$addToCart.removeClass('disabled').prop('disabled', false);
+				$addToCartText.text('Add to Shopping Bag');
+
+				// Show how many items are left, if below 10
+				if (variant.inventory_management) {
+					if (variant.inventory_quantity < 10 && variant.inventory_quantity > 0) {
+						$variantQuantity.html('Only ' + variant.inventory_quantity + ' left!').show();
+					} else {
+						$variantQuantity.hide();
+					}
+				}
+
+
+				$quantityElements.show();
+			} else {
+				// Variant is sold out, disable the submit button
+				$addToCart.addClass('disabled').prop('disabled', true);
+				$addToCartText.text('Sold Out');
+				$variantQuantity.hide();
+				$quantityElements.hide();
+			}
+
+			// Regardless of stock, update the product price
+			var customPriceFormat = Shopify.formatMoney(variant.price, "{{ shop.money_format }}");
+			$productPrice.html(customPriceFormat);
+
+			// Also update and show the product's compare price if necessary
+			if ( variant.compare_at_price > variant.price ) {
+				var priceSaving = Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}");
+				$comparePrice.html(priceSaving);
+			} else {
+				$comparePrice.hide();
+			}
+
+		} else {
+			// The variant doesn't exist, disable submit button.
+			// This may be an error or notice that a specific variant is not available.
+			$addToCart.addClass('disabled').prop('disabled', true);
+			$addToCartText.text('Unavailable');
+			$variantQuantity.hide();
+			$quantityElements.hide();
+		}
+	};
+
+	jQuery(function($) {
+		new Shopify.OptionSelectors('productSelect', {
+			product: {{ product | json }},
+			onVariantSelected: selectCallback,
+			enableHistoryState: true
+		});
+
+		// Add label if only one product option and it isn't 'Title'. Could be 'Size'.
+		{% if product.options.size == 1 and product.options.first != 'Title' %}
+		$('.selector-wrapper:eq(0)').append('&nbsp;&nbsp;<a href="#" data-toggle="modal" data-target="#sizeGuide">Ring Size Guide</a>');
+		{% endif %}
+
+		// Hide selectors if we only have 1 variant and its title contains 'Default'.
+		{% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
+		$('.selector-wrapper').hide();
+		{% else %}
+		$('#variantBreak').removeClass('hr--clear');
+		{% endif %}
+	});
+</script>
+
+{% comment %}{% assign add_to_cart = 'Add to Shopping Bag' %}
 {% assign sold_out = 'Sold Out' %}
 {% assign unavailable = 'Unavailable' %}
 
@@ -22,7 +304,9 @@
 					{% else %}
 
 					{% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
-					<img class="featured_image img-responsive" src="{{ featured_image | img_url: 'grande' }}" alt="{{ product.title | escape }}" />
+					<div class="product-photo-container">
+						<img class="featured_image img-responsive" src="{{ featured_image | img_url: 'grande' }}" alt="{{ product.title | escape }}" />
+					</div>
 
 
 					{% if product.images.size > 1 %}
@@ -141,48 +425,45 @@
 					</div>
 				</div>
 
+				<p><strong>Product code: {{ product.variants.first.sku }}</strong> - Need help? <a href="">Contact us</a></p>
 				<p>
-					<strong>Product code:
-						{{ product.variants.first.sku }}</strong> - Need help? <a href="">Contact us</a>
-					</p>
-					<p>
-						<strong>View More</strong> <br>
-						<ul>
-							{% for collection in product.collections %}
-							<li><a href="{{collection.url}}">View all {{ collection.title }}</a></li>
-							{% endfor %}
-						</ul>
-					</p>
+					<strong>View More</strong> <br>
+					<ul>
+						{% for collection in product.collections %}
+						<li><a href="{{collection.url}}">View all {{ collection.title }}</a></li>
+						{% endfor %}
+					</ul>
+				</p>
 
-					
-					{% if settings.social_sharing_products %}
-					<div>
-						{% include 'social-sharing' %}
-					</div>
+
+				{% if settings.social_sharing_products %}
+				<div>
+					{% include 'social-sharing' %}
+				</div>
+				{% endif %}
+
+				<div id="backorder" class="hidden">
+					<p>{{ '%s is back-ordered. We will ship it separately in 10 to 15 days.' | replace: '%s', '<span id="selected-variant"></span>' }}</p>
+				</div>
+
+				{% if collection %}
+				{% if collection.previous_product or collection.next_product %}
+				<div class="pagination">     
+					{% if collection.previous_product %}
+					{% capture prev_url %}{{ collection.previous_product}}#content{% endcapture %}
+					<a class="pagination-previous" href="{{prev_url}}"><i class="ion-ios-arrow-left"></i></a>
 					{% endif %}
-
-					<div id="backorder" class="hidden">
-						<p>{{ '%s is back-ordered. We will ship it separately in 10 to 15 days.' | replace: '%s', '<span id="selected-variant"></span>' }}</p>
-					</div>
-
-					{% if collection %}
-					{% if collection.previous_product or collection.next_product %}
-					<div class="pagination">     
-						{% if collection.previous_product %}
-						{% capture prev_url %}{{ collection.previous_product}}#content{% endcapture %}
-						<a class="pagination-previous" href="{{prev_url}}"><i class="ion-ios-arrow-left"></i></a>
-						{% endif %}
-						{% if collection.next_product %}
-						{% capture next_url %}{{ collection.next_product}}#content{% endcapture %}
-						<a class="pagination-next" href="{{next_url}}"><i class="ion-ios-arrow-right"></i></a>
-						{% endif %}
-					</div>
-					{% endif %}
+					{% if collection.next_product %}
+					{% capture next_url %}{{ collection.next_product}}#content{% endcapture %}
+					<a class="pagination-next" href="{{next_url}}"><i class="ion-ios-arrow-right"></i></a>
 					{% endif %}
 				</div>
+				{% endif %}
+				{% endif %}
 			</div>
 		</div>
-	</form>
+	</div>
+</form>
 </div>
 
 {% include 'related-products' %}
@@ -190,6 +471,7 @@
 <script>
 
 	var selectCallback = function(variant, selector) {
+
 		if (variant) {
 
     // Swap image.
@@ -225,27 +507,29 @@
     } else {
     	jQuery('#product-price').html('<span class="product-price">'+ Shopify.formatMoney(variant.price, "{{ shop.money_format }}") + '</span>' );
     }        
+
 } else {
     // variant doesn't exist.
     jQuery('#product-price').empty();
     jQuery('#backorder').addClass('hidden');
     jQuery('#add').val({{ unavailable | json }}).addClass('disabled').prop('disabled', true);
 }
+
 };
 
 jQuery(function($) {
+
 	new Shopify.OptionSelectors('product-select', { product: {{ product | json }}, onVariantSelected: selectCallback, enableHistoryState: true });
 
   // Add label if only one product option and it isn't 'Title'.
   {% if product.options.size == 1 and product.options.first != 'Title' %}
-  $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first }}&nbsp;</label>');
+  $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first }}</label>');
   {% endif %}
-  
-  // Ring size guide modal trigger 
-  {% if product.type contains 'Ring' %}
-  $('.selector-wrapper:eq(0)').append('&nbsp;&nbsp;&nbsp;<a class="form-control-static" data-toggle="modal" data-target="#sizeGuide">{{ pages.ring-size-guide.title }}</a>');
-  {% endif %}
+
 });
+
 Shopify.Image.preload({{ product.images | json }}, 'grande');
 Shopify.Image.preload({{ product.images | json }}, '1024x1024');
-</script>
+
+</script>{% endcomment %}
+
