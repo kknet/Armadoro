@@ -25,7 +25,7 @@ if (recommendations.length && recommendations[0] !== '') {
 	var list = jQuery('div.related-products');
 	for (var i=0; i<recommendations.length; i++) {
 		jQuery.getJSON('/products/' + recommendations[i] + '.js', function(product) {
-			list.append('<div class="col-sm-4 product"><div class="product-thumb"><a href="' + product.url +'"><img src="' + product.images[0].replace(/(\.jpg|\.png|\.jpeg|\.gif)/, '_{{ image_size }}$1') + '" /></a></div><div class="products-price">' + Shopify.formatMoney(product.price, '{{ shop.money_format }}') + '</div><div class="product-title"><a href="' + product.url + '">' + product.title + '</a></div></div>');
+			list.append('<div class="product-list col-sm-4"><div class="product-list-thumb"><a href="' + product.url +'"><img src="' + product.images[0].replace(/(\.jpg|\.png|\.jpeg|\.gif)/, '_{{ image_size }}$1') + '" /></a></div><div class="product-list-price">' + Shopify.formatMoney(product.price, '{{ shop.money_format }}') + '</div><div class="product-list-title"><a href="' + product.url + '">' + product.title + '</a></div></div>');
 		});
 	}
 }  

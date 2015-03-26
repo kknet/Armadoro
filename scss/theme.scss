@@ -59,6 +59,14 @@
 // Import Bootstrap for Sass
 @import "bootstrap";
 
+//== Theme Variables
+// --------------------------------------------------
+
+$base-letter-spacing: 	.1em;
+
+$link-gray-color: 		#666666;
+$global-border:			#ebebeb;
+
 // @import "typography";
 @import "product";
 
@@ -67,13 +75,6 @@
 // Custom CSS classes here
 // --------------------------------------------------
 
-//== Theme Variables
-// --------------------------------------------------
-
-$base-letter-spacing: 	.1em;
-
-$link-gray-color: 		#666666;
-$global-border:			#ebebeb;
 
 
 //== Misc
@@ -231,44 +232,6 @@ a.btn-search {
 	margin-bottom: ($line-height-computed / 2);
 }
 
-//== Product loop
-// --------------------------------------------------
-
-.product{
-	text-align: center;
-	margin-bottom: $line-height-computed;
-}
-
-.total-products{
-	line-height: $input-height-base;
-}
-
-.product-title > a {
-	color: $link-gray-color;
-	display: block;
-	@include text-overflow;
-}
-
-.products-price{
-	font-size: 16px;
-	margin-top: ($line-height-computed / 2);
-	font-weight: 600;
-}
-
-.product-thumb {
-	height: 175px;
-	overflow: hidden;
-	line-height: 175px;
-
-	a{
-		display: block;
-	}
-
-	a > img, > img {
-		// max-width: 100%;
-		// height: auto;
-	}
-}
 
 //== Section title
 // --------------------------------------------------
@@ -276,6 +239,7 @@ a.btn-search {
 .section-header{
 	text-align: center;
 	position: relative;
+	margin: ($line-height-computed * 2) 0 $line-height-computed;
 
 	&:after{
 		content: '';

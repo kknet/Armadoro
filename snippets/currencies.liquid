@@ -30,20 +30,20 @@ var buttons = jQuery('#currencies span');
 
 // If there's no cookie or it's the shop currency.
 if (cookieCurrency == null || cookieCurrency === shopCurrency) {
-  buttons.removeClass('selected');
-  jQuery('#currencies span[data-currency=' + shopCurrency + ']').addClass('selected');
+  buttons.removeClass('active');
+  jQuery('#currencies span[data-currency=' + shopCurrency + ']').addClass('active');
   Currency.currentCurrency = shopCurrency;
 }
 else {
   Currency.convertAll(shopCurrency, cookieCurrency);
-  buttons.removeClass('selected');
-  jQuery('#currencies span[data-currency=' + cookieCurrency + ']').addClass('selected');
+  buttons.removeClass('active');
+  jQuery('#currencies span[data-currency=' + cookieCurrency + ']').addClass('active');
 }
 
 // When customer clicks on a currency button.
 buttons.click(function() {
-  buttons.removeClass('selected');
-  jQuery(this).addClass('selected');
+  buttons.removeClass('active');
+  jQuery(this).addClass('active');
   var newCurrency =  jQuery(this).attr('data-currency');
   Currency.convertAll(Currency.currentCurrency, newCurrency);
 });
@@ -52,7 +52,7 @@ buttons.click(function() {
 var original_selectCallback = window.selectCallback;
 var selectCallback = function(variant, selector) {
   original_selectCallback(variant, selector);
-  Currency.convertAll(shopCurrency, jQuery('#currencies span.selected').attr('data-currency'));
+  Currency.convertAll(shopCurrency, jQuery('#currencies span.active').attr('data-currency'));
   jQuery('.selected-currency').text(Currency.currentCurrency);
 };
 

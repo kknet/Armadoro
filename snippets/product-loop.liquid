@@ -1,16 +1,16 @@
 {% if product-loop == '' %}{% assign product-loop = 'col-sm-4' %}{% endif %}
 
-<div class="product {{ product-loop }}">
-	<div class="product-thumb">
+<div class="product-list {{ product-loop }}">
+	<div class="product-list-thumb">
 		<a href="{{ product.url | within: collection }}">
 			<img src="{{ product.featured_image.src | product_img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}" />
 		</a>
 	</div>
-	<div class="products-price">
+	<div class="product-list-price">
 		{% if product.price_varies %}From{% endif %}
 		{{ product.price | money }}
 	</div>
-	<div class="product-title">
+	<div class="product-list-title">
 		<a href="{{ product.url | within: collection }}">
 			{{ product.title }}
 		</a>

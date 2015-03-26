@@ -4,29 +4,28 @@
 	<meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
 
 	<div class="col-sm-7">
+
 		<div class="product-photo-container" id="productPhoto">
 			{% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
-			<img id="productPhotoImg" src="{{ featured_image | img_url: 'grande' }}" alt="{{ featured_image.alt | escape }}">
+			<img id="productPhotoImg" src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}">
 		</div>
 
-		<div class="royalSlider rsDefault">
-			{% if product.images.size > 1 %}
-				{% for image in product.images %}
-					<img class="rsImg" src="{{ image.src | img_url: 'grande' }}" data-rsTmb="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}" />
-				{% endfor %}
-			{% endif %}
-		</div>
-
-		{% comment %}{% if product.images.size > 1 %}
-		<div id="gallery-1" class="royalSlider rsDefault">
+		{% if product.images.size > 1 %}
+		<div id="productThumb" class="royalSlider rsDefault">
 			{% for image in product.images %}
-			<a class="rsImg" data-rsBigImg="{{ image.src | img_url: 'original' }}" href="{{ image.src | img_url: 'large' }}" class="product-photo-thumb">
-				<img class="rsTmb" src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+			<a class="rsImg" data-rsBigImg="{{ image.src | img_url: 'grande' }}" href="{{ image.src | img_url: 'original' }}">
+				<img class="rsTmb" src="{{ image.src | img_url: 'small' }}" alt="{{ image.alt | escape }}" />
 			</a>
-			{% endfor %}			
+			{% endfor %}
 		</div>
-		{% endif %}{% endcomment %}
-		
+		{% endif %}	
+
+		<script type="text/javascript">
+		if ($('#productThumb').length > 0) {
+			$( "#productPhoto" ).hide();
+		}
+		</script>
+
 	</div>
 
 	<div class="col-sm-5">
@@ -278,258 +277,4 @@
 		$('#variantBreak').removeClass('hr--clear');
 		{% endif %}
 	});
-</script>
-
-{% comment %}{% assign add_to_cart = 'Add to Shopping Bag' %}
-{% assign sold_out = 'Sold Out' %}
-{% assign unavailable = 'Unavailable' %}
-
-<div class="product-page" itemscope itemtype="http://schema.org/Product">
-	
-	<meta itemprop="url" content="{{ shop.url }}{{ product.url }}" />
-	<meta itemprop="image" content="{{ product | img_url: 'grande' }}" />
-
-	<form action="/cart/add" method="post" enctype="multipart/form-data">
-
-		<div class="row">
-			<div class="col-sm-7">
-				<div class="product-images">
-
-					{% if product.images.size == 0 %}
-
-					<div class="product-photo-container">
-						<img src="{{ '' | img_url: 'grande' }}" alt="" />
-					</div>
-
-					{% else %}
-
-					{% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
-					<div class="product-photo-container">
-						<img class="featured_image img-responsive" src="{{ featured_image | img_url: 'grande' }}" alt="{{ product.title | escape }}" />
-					</div>
-
-
-					{% if product.images.size > 1 %}
-					<div id="product-img-thumb" class="royalSlider rsDefault">
-						{% for image in product.images %}
-						<a class="rsImg thumbnail" data-rsbigimg="{{ image | img_url: '1024x1024' }}" href="{{ image | img_url: '1024x1024' }}">
-							{{ product.title }}
-							<img class="rsTmb" src="{{ image | img_url: 'small'  }}" alt="{{ product.title | escape }}" />
-						</a>
-						{% endfor %}
-					</div>
-					{% endif %}
-
-					{% endif %}
-
-					<script type="text/javascript">
-						if ($('#product-img-thumb').length > 0) {
-							$( ".featured_image" ).addClass( "hidden" );
-						}
-					</script>
-				</div>
-			</div>
-			<div class="col-sm-5">
-				<div class="product-details">
-
-					<h2 class="product-header" itemprop="name">{{ product.title }}</h2>
-
-					<div id="product-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="delta">
-						<meta itemprop="priceCurrency" content="{{ shop.currency }}" />
-						{% if product.available %}
-						<link itemprop="availability" href="http://schema.org/InStock" />
-						{% else %}
-						<link itemprop="availability" href="http://schema.org/OutOfStock" />
-						{% endif %}
-						<p>
-							{% assign variant = product.selected_or_first_available_variant %}
-							{% if product.compare_at_price > product.price %}
-							<span class="product-price on-sale" itemprop="price">{{ variant.price | money }}</span>
-							<s class="product-compare-price">{{ variant.compare_at_price | money }}</s>
-							{% else %}
-							<div class="product-price" itemprop="price">{{ variant.price | money }}</div>
-							{% endif %}
-						</p>
-					</div>
-
-					{% assign hide_default_title = false %}
-					{% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
-					{% assign hide_default_title = true %}
-					{% endif %}
-
-					<div id="product-variants" class="form-inline {% if hide_default_title %}hidden{% endif %}">
-						<select id="product-select" class="form-control" name="id">
-							{% for variant in product.variants %}
-							<option{% if variant == product.selected_or_first_available_variant %} selected{% endif %} value="{{ variant.id }}">
-							{{ variant.title }} - {{ variant.price | money }}
-						</option>
-						{% endfor %}
-					</select>
-				</div>
-
-
-				<!-- Ring size guide Modal -->
-				<div class="modal fade" id="sizeGuide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-								<h4 class="modal-title" id="myModalLabel">{{ pages.ring-size-guide.title }}</h4>
-							</div>
-							<div class="modal-body">
-								{{ pages.ring-size-guide.content }}
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="row product-actions">
-					<div class="col-sm-7 form-group" id="product-add">
-						<input type="submit" name="add" id="add" class="btn btn-primary btn-block" value="{{ add_to_cart | escape }}">
-					</div>
-					<div class="col-sm-5">
-						<button class="btn btn-default btn-block">Add To Wish List</button>
-					</div>
-				</div>
-
-				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-					<div class="panel panel-default">
-						<div class="panel-heading" role="tab" id="headingOne">
-							<h4 class="panel-title">
-								<a data-toggle="collapse" data-parent="#accordion" href="#description" aria-expanded="true" aria-controls="collapseOne">
-									Product Description
-								</a>
-							</h4>
-						</div>
-						<div id="description" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-							<div class="panel-body rte" itemprop="description">
-								{{ product.description}}
-							</div>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading" role="tab" id="headingTwo">
-							<h4 class="panel-title">
-								<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#returns" aria-expanded="false" aria-controls="collapseTwo">
-									{{ pages.returns.title }}
-								</a>
-							</h4>
-						</div>
-						<div id="returns" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-							<div class="panel-body">
-								{{ pages.returns.content }}
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<p><strong>Product code: {{ product.variants.first.sku }}</strong> - Need help? <a href="">Contact us</a></p>
-				<p>
-					<strong>View More</strong> <br>
-					<ul>
-						{% for collection in product.collections %}
-						<li><a href="{{collection.url}}">View all {{ collection.title }}</a></li>
-						{% endfor %}
-					</ul>
-				</p>
-
-
-				{% if settings.social_sharing_products %}
-				<div>
-					{% include 'social-sharing' %}
-				</div>
-				{% endif %}
-
-				<div id="backorder" class="hidden">
-					<p>{{ '%s is back-ordered. We will ship it separately in 10 to 15 days.' | replace: '%s', '<span id="selected-variant"></span>' }}</p>
-				</div>
-
-				{% if collection %}
-				{% if collection.previous_product or collection.next_product %}
-				<div class="pagination">     
-					{% if collection.previous_product %}
-					{% capture prev_url %}{{ collection.previous_product}}#content{% endcapture %}
-					<a class="pagination-previous" href="{{prev_url}}"><i class="ion-ios-arrow-left"></i></a>
-					{% endif %}
-					{% if collection.next_product %}
-					{% capture next_url %}{{ collection.next_product}}#content{% endcapture %}
-					<a class="pagination-next" href="{{next_url}}"><i class="ion-ios-arrow-right"></i></a>
-					{% endif %}
-				</div>
-				{% endif %}
-				{% endif %}
-			</div>
-		</div>
-	</div>
-</form>
-</div>
-
-{% include 'related-products' %}
-
-<script>
-
-	var selectCallback = function(variant, selector) {
-
-		if (variant) {
-
-    // Swap image.
-    if (variant.featured_image) {
-      var newImage = variant.featured_image; // New image object.
-      var mainImageDomEl = jQuery('.product-photo-container img')[0]; // DOM element of main image we need to swap.
-      Shopify.Image.switchImage(newImage, mainImageDomEl, switchImage); // Define switchImage (the callback) in your theme's JavaScript file.
-  }
-
-    // Selected a valid variant that is available.
-    if (variant.available) {
-
-      // Enabling add to cart button.
-      jQuery('#add').removeClass('disabled').prop('disabled', false).val({{ add_to_cart | json }});
-
-      // If item is backordered yet can still be ordered, we'll show special message.
-      if (variant.inventory_management && variant.inventory_quantity <= 0) {
-      	jQuery('#selected-variant').html({{ product.title | json }}{% unless hide_default_title %} + ' - ' + variant.title{% endunless %});
-      	jQuery('#backorder').removeClass("hidden");
-      } else {
-      	jQuery('#backorder').addClass("hidden");
-      }
-      
-  } else {
-      // Variant is sold out.
-      jQuery('#backorder').addClass('hidden');
-      jQuery('#add').val({{ sold_out | json }}).addClass('disabled').prop('disabled', true);       
-  }
-
-    // Whether the variant is in stock or not, we can update the price and compare at price.
-    if ( variant.compare_at_price > variant.price ) {
-    	jQuery('#product-price').html('<span class="product-price on-sale">'+ Shopify.formatMoney(variant.price, "{{ shop.money_format }}") +'</span>'+'&nbsp;<s class="product-compare-price">'+Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}")+ '</s>');
-    } else {
-    	jQuery('#product-price').html('<span class="product-price">'+ Shopify.formatMoney(variant.price, "{{ shop.money_format }}") + '</span>' );
-    }        
-
-} else {
-    // variant doesn't exist.
-    jQuery('#product-price').empty();
-    jQuery('#backorder').addClass('hidden');
-    jQuery('#add').val({{ unavailable | json }}).addClass('disabled').prop('disabled', true);
-}
-
-};
-
-jQuery(function($) {
-
-	new Shopify.OptionSelectors('product-select', { product: {{ product | json }}, onVariantSelected: selectCallback, enableHistoryState: true });
-
-  // Add label if only one product option and it isn't 'Title'.
-  {% if product.options.size == 1 and product.options.first != 'Title' %}
-  $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first }}</label>');
-  {% endif %}
-
-});
-
-Shopify.Image.preload({{ product.images | json }}, 'grande');
-Shopify.Image.preload({{ product.images | json }}, '1024x1024');
-
-</script>{% endcomment %}
-
+	</script>

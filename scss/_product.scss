@@ -1,3 +1,48 @@
+//
+// Product-loop
+// --------------------------------------------------
+
+.product-list{
+	text-align: center;
+	margin-bottom: $line-height-computed;
+}
+
+.total-products{
+	line-height: $input-height-base;
+}
+
+.product-list-title > a {
+	color: $link-gray-color;
+	display: block;
+	@include text-overflow;
+}
+
+.product-list-price{
+	font-size: 16px;
+	margin-top: ($line-height-computed / 2);
+	font-weight: 600;
+}
+
+.product-list-thumb {
+	height: 175px;
+	overflow: hidden;
+	line-height: 175px;
+
+	a{
+		display: block;
+	}
+
+	a > img, > img {
+		// max-width: 100%;
+		// height: auto;
+	}
+}
+
+
+//
+// Product
+// --------------------------------------------------
+
 .product-title {
 	font-family: $font-family-serif;
 	text-transform: uppercase;
@@ -14,15 +59,4 @@
 
 #productPrice, .selector-wrapper, .product-actions{
 	margin-bottom: $line-height-computed;
-}
-
-.single-option-selector{
-	@extend .form-control;
-}
-
-#product-img-thumb {
-	width: 100%;
-	-webkit-user-select: none;
-	-moz-user-select: none;  
-	user-select: none;
 }
