@@ -24,18 +24,20 @@
 }
 
 .product-list-thumb {
-	height: 175px;
 	overflow: hidden;
-	line-height: 175px;
 
 	a{
 		display: block;
 	}
+}
 
-	a > img, > img {
-		// max-width: 100%;
-		// height: auto;
-	}
+.col-sm-3 > .product-list-thumb {
+	height: 120px;
+}
+
+.col-sm-4 > .product-list-thumb {
+	height: 175px;
+	line-height: 175px;
 }
 
 

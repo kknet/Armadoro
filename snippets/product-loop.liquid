@@ -1,9 +1,11 @@
-{% if product-loop == '' %}{% assign product-loop = 'col-sm-4' %}{% endif %}
+{% comment %}{% if product-loop == '' %}{% assign product-loop = 'col-sm-4' %}{% endif %}{% endcomment %}
+{% if settings.products_per_row == '3' %}{% assign product_col = 'col-sm-4' %}{% endif %}
+{% if settings.products_per_row == '4' %}{% assign product_col = 'col-sm-3' %}{% endif %}
 
-<div class="product-list {{ product-loop }}">
+<div class="product-list {{ product_col }}">
 	<div class="product-list-thumb">
 		<a href="{{ product.url | within: collection }}">
-			<img src="{{ product.featured_image.src | product_img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}" />
+			<img class="img-responsive" src="{{ product.featured_image.src | product_img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}" />
 		</a>
 	</div>
 	<div class="product-list-price">

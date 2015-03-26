@@ -1,0 +1,43 @@
+<ul class="clearfix filters">
+	<li class="filter-title">
+		Shop by category
+	</li>
+	{% for c in collections %}
+	{% unless c.handle == 'all' %}
+	{% if collection.handle == c.handle %}
+	<li>
+		{{ c.handle | link_to_remove_handle: handle }}
+		{% comment %}<a href="{{ c.handle }}">{{ c.title }}</a>{% endcomment %}
+	</li>
+	{% else %}
+	<li>
+		{{ c.handle | link_to_collection: c }}
+		{% comment %}<a href="{{ c.handle }}">{{ c.title }}</a>{% endcomment %}
+	</li>
+	{% endif %}
+	{% endunless %}
+	{% endfor %}
+</ul>
+
+{% if settings.filter_by_color != '' %}
+<ul class="filters">
+	{% assign tags = settings.filter_by_color | split: ',' %}
+
+	<li class="filter-title">
+		Shop by color
+	</li>
+
+	{% for t in tags %}
+	{% assign tag = t | strip %}
+	{% if current_tags contains tag %}
+	<li>
+		{{ tag | link_to_remove_tag: tag }}
+	</li>
+	{% elsif collection.all_tags contains tag %}
+	<li>
+		{{ tag | link_to_tag: tag }}
+	</li>
+	{% endif %}
+	{% endfor %}
+</ul>
+{% endif %}

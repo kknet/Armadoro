@@ -7,33 +7,8 @@
 
 		<div class="col-md-3">
 			
-			<ul class="subnav">
-				<li>
-					{{ 'All' | link_to: '/collections/all' }}
-				</li>
-			</ul>
-
-			<ul class="list-unstyled">
-				{% for link in linklists.main-menu.links %}
-				{% assign child_list_handle = link.title | handleize %}
-				{% if linklists[child_list_handle].links != blank %}
-				<li class="{% if link.active %} active{% endif %} dropdown">
-				<a href="{{ link.url }}" class="subnav-title">{{ link.title }}</a>
-					<ul class="subnav" role="menu">
-						{% for childlink in linklists[child_list_handle].links %}
-						<li {% if childlink.active %}class="active"{% endif %}>
-							<a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
-						</li>
-						{% endfor %}
-					</ul>
-				</li>
-				{% else %}
-				<li {% if link.active %}class="uk-active"{% endif %}>
-					<a class="subnav-title" href="{{ link.url }}">{{ link.title }}</a>
-				</li>
-				{% endif %}
-				{% endfor %}
-			</ul>
+			{% include 'collection-sidebar' %}
+			
 		</div>
 
 		<div class="col-md-9">
@@ -103,17 +78,6 @@
 	jQuery('#sort-by')
 	.val('{{ collection.sort_by | default: collection.default_sort_by | escape }}')
 	.bind('change', function() {
-		Shopify.queryParams.sort_by = jQuery(this).val();
-		location.search = jQuery.param(Shopify.queryParams).replace(/\+/g, '%20');
-	});
-</script>
-
-{% comment %}JavaScript for collection sorting.{% endcomment %}
-
-<script>
-	jQuery('#sort-by')
-	.val('{{ collection.sort_by | default: collection.default_sort_by }}')
-	.on('change', function() {
 		Shopify.queryParams.sort_by = jQuery(this).val();
 		location.search = jQuery.param(Shopify.queryParams).replace(/\+/g, '%20');
 	});

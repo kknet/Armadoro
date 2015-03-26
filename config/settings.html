@@ -1,51 +1,3 @@
-<!-- Product Pages -->
-<fieldset>
-	<legend>Product Pages</legend>
-	<table>
-		<tr>
-			<th><label for="product_quantity_enable">Show Quantity Selector</label></th>
-			<td colspan="2"><input type="checkbox" id="product_quantity_enable" name="product_quantity_enable" value="1" /></td>
-		</tr>
-		<tr>
-			<th><label for="product_vendor_enable">Show Product Vendor</label></th>
-			<td colspan="2"><input type="checkbox" id="product_vendor_enable" name="product_vendor_enable" value="1" /></td>
-		</tr>
-		<tr>
-			<td colspan="3">
-				<h3 class="heading">Related Products</h3>
-			</td>
-		</tr>
-		<tr>
-			<th><label for="related_products_enable">Enable Related Products</label></th>
-			<td colspan="2"><input type="checkbox" id="related_products_enable" name="related_products_enable" value="1" /></td>
-		</tr>
-		<tr>
-			<th><label for="related_products_title">Related Products Title</label></th>
-			<td colspan="2"><input type="text" id="related_products_title" name="related_products_title" size="50" value="" /></td>
-		</tr>
-		<tr>
-			<td colspan="3">
-				<h3 class="heading">Product Reviews</h3>
-				You can easily add product reviews to this theme by first installing Shopify's free <a href="https://apps.shopify.com/product-reviews">Product Reviews</a> app.
-			</td>
-		</tr>
-		<tr>
-			<th>
-				<label for="product_reviews_enable">Enable Product Reviews</label>
-				<small><a href="/admin/apps/product-reviews/settings">View Product Review settings</a></small>
-			</th>
-			<td><input type="checkbox" id="product_reviews_enable" name="product_reviews_enable" value="1" /></td>
-		</tr>
-		<tr>
-			<th><label for="product_reviews_star_color">Star Color</label></th>
-			<td width="100">
-				<input id="product_reviews_star_color" name="product_reviews_star_color" class="color" type="text" value="#e5c649" />
-			</td>
-			<td><small>This overrides the product review app settings</small></td>
-		</tr>
-	</table>
-</fieldset>
-
 <fieldset>
 	<legend>Header</legend>
 	<table>
@@ -255,26 +207,11 @@
 	</table>
 </fieldset>
 
+<!-- Collection Page -->
+
 <fieldset>
 	<legend>Collection Page</legend>
 	<table>
-		<tr>
-			<td colspan="2">
-				<h3>Collection Filters</h3>
-			</td>
-		</tr>
-		<tr class="horizontal">
-			<th><label for="collection_tags">Show "Browse by" product tag filter?</label></th>
-			<td>
-				<input type="checkbox" id="collection_tags" name="collection_tags" value="1" checked="checked" />
-			</td>
-		</tr>
-		<tr class="horizontal">
-			<th><label for="collection_sort">Display sort by?</label></th>
-			<td>
-				<input type="checkbox" id="collection_sort" name="collection_sort" value="1" checked="checked" />
-			</td>
-		</tr>
 		<tr>
 			<td colspan="2">
 				<h3>Collection Page Layout</h3>
@@ -292,6 +229,73 @@
 		<tr class="horizontal">
 			<th><label for="pagination_limit">Number of products per page</label></th>
 			<td><input type="number" name="pagination_limit" id="pagination_limit" value="24" /></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<h3>Collection Filter</h3>
+			</td>
+		</tr>
+		<tr class="horizontal">
+			<th><label for="filter_by_color">Filter by color</label></th>
+			<td>
+				<input type="text" name="filter_by_color" id="filter_by_color" value="" />
+				<small>List of colors you want to use separated with a comma</small>
+			</td>
+		</tr>
+		<tr class="horizontal">
+			<th><label for="filter_by_type">Filter by type</label></th>
+			<td>
+				<input type="text" name="filter_by_type" id="filter_by_type" value="" />
+				<small>List of product type you want to use separated with a comma</small>
+			</td>
+		</tr>
+	</table>
+</fieldset>
+
+<!-- Product Pages -->
+<fieldset>
+	<legend>Product Pages</legend>
+	<table>
+		<tr>
+			<th><label for="product_quantity_enable">Show Quantity Selector</label></th>
+			<td colspan="2"><input type="checkbox" id="product_quantity_enable" name="product_quantity_enable" value="1" /></td>
+		</tr>
+		<tr>
+			<th><label for="product_vendor_enable">Show Product Vendor</label></th>
+			<td colspan="2"><input type="checkbox" id="product_vendor_enable" name="product_vendor_enable" value="1" /></td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<h3 class="heading">Related Products</h3>
+			</td>
+		</tr>
+		<tr>
+			<th><label for="related_products_enable">Enable Related Products</label></th>
+			<td colspan="2"><input type="checkbox" id="related_products_enable" name="related_products_enable" value="1" /></td>
+		</tr>
+		<tr>
+			<th><label for="related_products_title">Related Products Title</label></th>
+			<td colspan="2"><input type="text" id="related_products_title" name="related_products_title" size="50" value="" /></td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<h3 class="heading">Product Reviews</h3>
+				You can easily add product reviews to this theme by first installing Shopify's free <a href="https://apps.shopify.com/product-reviews">Product Reviews</a> app.
+			</td>
+		</tr>
+		<tr>
+			<th>
+				<label for="product_reviews_enable">Enable Product Reviews</label>
+				<small><a href="/admin/apps/product-reviews/settings">View Product Review settings</a></small>
+			</th>
+			<td><input type="checkbox" id="product_reviews_enable" name="product_reviews_enable" value="1" /></td>
+		</tr>
+		<tr>
+			<th><label for="product_reviews_star_color">Star Color</label></th>
+			<td width="100">
+				<input id="product_reviews_star_color" name="product_reviews_star_color" class="color" type="text" value="#e5c649" />
+			</td>
+			<td><small>This overrides the product review app settings</small></td>
 		</tr>
 	</table>
 </fieldset>
