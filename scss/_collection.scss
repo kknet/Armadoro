@@ -2,15 +2,14 @@
 // Collection sidebar
 // --------------------------------------------------
 
-h4.filter-title{
-	font-size: 13px;
+.filter-title{
 	@include uppercase;
 }
 
 .filter{
 	list-style: none;
 	padding: 0;
-	margin: 0 0 $line-height-computed;
+	margin: 0 0 ($line-height-computed);
 
 	> li > a{
 		position: relative;

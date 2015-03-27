@@ -17,7 +17,7 @@
 	{% if settings.share_facebook %}
 	<li>
 		<a target="_blank" href="//www.facebook.com/sharer.php?u={{ permalinkURL }}" class="share-facebook">
-			<span class="fa fa-facebook"></span>
+			<span class="fa fa-facebook fa-lg"></span>
 			{% if settings.social_sharing_count %}
 				<span class="share-title">Share</span>
 				<span class="share-count">0</span>
@@ -29,7 +29,7 @@
 	{% if settings.share_twitter %}
 	<li>
 		<a target="_blank" href="//twitter.com/share?url={{ permalinkURL }}&amp;text={{ shareTitle }}" class="share-twitter">
-			<span class="fa fa-twitter"></span>
+			<span class="fa fa-twitter fa-lg"></span>
 			{% if settings.social_sharing_count %}
 				<span class="share-title">Tweet</span>
 				<span class="share-count">0</span>
@@ -43,7 +43,7 @@
 	{% if settings.share_pinterest %}
 	<li>
 		<a target="_blank" href="//pinterest.com/pin/create/button/?url={{ permalinkURL }}&amp;media={{ product.featured_image | img_url: 'original' }}&amp;description={{ product.title | escape }}" class="share-pinterest">
-			<span class="fa fa-pinterest"></span>
+			<span class="fa fa-pinterest fa-lg"></span>
 			{% if settings.social_sharing_count %}
 				<span class="share-title">Pin it</span>
 				<span class="share-count">0</span>
@@ -68,7 +68,7 @@
 	<li>
 		<a target="_blank" href="//plus.google.com/share?url={{ permalinkURL }}" class="share-google">
 			<!-- Cannot get Google+ share count with JS yet -->
-			<span class="fa fa-google-plus"></span>
+			<span class="fa fa-google-plus fa-lg"></span>
 			{% if settings.social_sharing_count %}
 			<span class="share-count">+1</span>
 			{% endif %}

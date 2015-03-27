@@ -1,24 +1,31 @@
+$h1: 32px;
+$h2: 24px;
+$h3: 20px;
+$h4: 16px;
+$h5: 14px;
+$h6: 12px;
+
 html {
     font-size: 62.5%;
     -webkit-tap-highlight-color: rgba(0,0,0,0)
 }
 
 body {
-    font-family: 'Montserrat',sans-serif;
-    font-size: 14px;
+    font-family: $font-family-sans-serif;
+    font-size: 13px;
     line-height: 1.42857143;
     color: #333;
     background-color: #fff
 }
 
-body,h1,h2,h3,h4,h5,h6,p,li,a,span {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
-}
+// body,h1,h2,h3,h4,h5,h6,p,li,a,span {
+//     -webkit-font-smoothing: antialiased;
+//     -moz-osx-font-smoothing: grayscale
+// }
 
 h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
 	font-family: inherit;
-	font-weight: 500;
+	font-weight: 400;
 	line-height: 1.1;
 	color: inherit
 }
@@ -51,27 +58,27 @@ h4 small,.h4 small,h5 small,.h5 small,h6 small,.h6 small,h4 .small,.h4 .small,h5
 }
 
 h1,.h1 {
-	font-size: 36px
+	font-size: $h1;
 }
 
 h2,.h2 {
-	font-size: 30px
+	font-size: $h2;
 }
 
 h3,.h3 {
-	font-size: 24px
+	font-size: $h3;
 }
 
 h4,.h4 {
-	font-size: 18px
+	font-size: $h4;
 }
 
 h5,.h5 {
-	font-size: 14px
+	font-size: $h5;
 }
 
 h6,.h6 {
-	font-size: 12px
+	font-size: $h6;
 }
 
 p {
@@ -80,7 +87,12 @@ p {
 
 .lead {
 	margin-bottom: 20px;
-	font-size: 16px;
+	font-size: $h4;
 	font-weight: 200;
 	line-height: 1.4
+}
+
+// Icons
+.fa-lg{
+	font-size: 1.2em !important;
 }
