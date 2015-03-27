@@ -59,6 +59,7 @@
 // Import Bootstrap for Sass
 @import "bootstrap";
 
+
 //== Theme Variables
 // --------------------------------------------------
 
@@ -67,9 +68,18 @@ $base-letter-spacing: 	.1em;
 $link-gray-color: 		#666666;
 $global-border:			#ebebeb;
 
+//== Mixin
+// --------------------------------------------------
+
+@mixin uppercase(){
+	text-transform: uppercase;
+	letter-spacing: $base-letter-spacing;
+}
+
+
 // @import "typography";
 @import "product";
-
+@import "collection";
 
 //
 // Custom CSS classes here
@@ -85,13 +95,6 @@ ul ,ol {
 }
 
 
-//== Mixin
-// --------------------------------------------------
-
-@mixin uppercase(){
-	text-transform: uppercase;
-	letter-spacing: $base-letter-spacing;
-}
 
 //== Html 5 tags
 // --------------------------------------------------
@@ -109,10 +112,10 @@ header{
 
 	.logo{
 		text-align: center;
-		@include uppercase();
 
 		> a{
 			color: $text-color;
+			@include uppercase();
 
 			&:hover{
 				text-decoration: none;

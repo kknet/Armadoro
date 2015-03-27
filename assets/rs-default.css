@@ -63,7 +63,7 @@
 
 	position: absolute;	
 	cursor: pointer;	
-	font-family: "Ionicons";
+	font-family: "FontAwesome";
 
 	filter: alpha(opacity=20);
 	opacity: .2;
@@ -77,8 +77,8 @@
 	opacity: .5;
 }
 
-.rsDefault.rsHor .rsArrowLeft .rsArrowIcn:before { content: "\f3d2"; }
-.rsDefault.rsHor .rsArrowRight .rsArrowIcn:before { content: "\f3d3"; }
+.rsDefault.rsHor .rsArrowLeft .rsArrowIcn:before { content: "\f104"; }
+.rsDefault.rsHor .rsArrowRight .rsArrowIcn:before { content: "\f105"; }
 
 .rsDefault.rsVer .rsArrowLeft .rsArrowIcn { background-position: -96px -32px; }
 .rsDefault.rsVer .rsArrowRight .rsArrowIcn { background-position: -96px -64px; }
@@ -355,17 +355,16 @@
 	/*width: 32px;*/
 	/*height: 32px;*/
 	/*line-height: 32px;*/
-	/*font-size: 26px;*/
-	/*font-family: "Ionicons";*/
+	font-size: 11px;
+	font-family: "FontAwesome";
 	text-align: center;
-	text-decoration: underline;
+	text-transform: uppercase;
 	filter: alpha(opacity=30);
 	opacity: .3;
 }
 
 .rsDefault .rsFullscreenIcn:before{
-	/*content: "\f263";*/
-	content: "View full size image";
+	content: "full screen";
 }
 
 .rsDefault .rsFullscreenIcn:hover {
@@ -373,8 +372,11 @@
 	opacity: .7;
 	/*background-color: rgba(0,0,0,0.9);*/
 }
-.rsDefault.rsFullscreen .rsFullscreenIcn {
-	background-position: -32px 0;
+.rsDefault.rsFullscreen .rsFullscreenIcn{
+	right: 20%;
+}
+.rsDefault.rsFullscreen .rsFullscreenIcn:before {
+	content: "exit full screen";
 }
 
 

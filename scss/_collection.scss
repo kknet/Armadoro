@@ -1,0 +1,43 @@
+//
+// Collection sidebar
+// --------------------------------------------------
+
+h4.filter-title{
+	font-size: 13px;
+	@include uppercase;
+}
+
+.filter{
+	list-style: none;
+	padding: 0;
+	margin: 0 0 $line-height-computed;
+
+	> li > a{
+		position: relative;
+		display: block;
+		margin-top: 5px;
+		margin-bottom: 5px;
+		padding-left: 20px;
+
+		&:before{
+			position: absolute;
+			left: 0;
+			top: 4px;
+			content: "\f096";
+			color: #666;
+			font: normal normal normal 14px/1 FontAwesome; 
+		}
+
+		&:hover{
+			&:before{
+				content: "\f0c8";
+			}
+		}
+	}
+
+	> li.active > a{
+			&:before{
+				content: "\f14a";
+			}
+	}
+}
