@@ -1,8 +1,70 @@
-<footer>
-	<ul class="list-inline">
-		{% for link in linklists.footer.links %}
-		<li><a href="{{ link.url }}">{{ link.title }}</a></li>
-		{% endfor %}
-	</ul>
-	<p role="contentinfo">Copyright &copy; {{ "now" | date: "%Y" }} {{ shop.name }}. {{ powered_by_link }}.</p>
-</footer> 
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-push-4">
+				<div class="row">
+
+					{% if settings.footer_display_social %}
+					<div class="col-md-6">
+						{% include 'footer-social' %}
+					</div>
+					{% endif %}
+
+					{% if settings.footer_display_newsletter %}
+					<div class="col-md-6">
+						<h4 class="footer-title">{{settings.footer_display_newsletter_title}}</h4>
+						<form class="newsletter" action="{{ settings.mailing_list_form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+							<input type="email" class="form-control" placeholder="Sign up to {{ shop.name }} news" name="email" id="mail" />
+							<i class="fa fa-angle-right"></i>
+							<input type="submit" class="email-submit" name="subscribe" id="subscribe" />
+						</form>
+					</div>
+					{% endif %}
+
+				</div>
+
+				<div class="white-space hidden-xs"></div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<h4 class="footer-title">{{settings.footer_display_address_1_title}}</h4>
+						<p>{{settings.footer_display_address_1}}</p>
+					</div>
+					<div class="col-md-6">
+						<h4 class="footer-title">{{settings.footer_display_address_2_title}}</h4>
+						<p>{{settings.footer_display_address_2}}</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4 col-md-pull-8">
+				<ul class="list-unstyled">
+					<h4 class="footer-title">{{settings.footer_display_navigation_title}}</h4>
+					{% for link in linklists.footer.links %}
+					<li><a href="{{ link.url }}">{{ link.title }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<p class="contentinfo" role="contentinfo">
+					Copyright &copy; {{ "now" | date: "%Y" }} {{ shop.name }}. {{ powered_by_link }}.</p>
+				</div>	
+				<div class="col-md-6">
+					<ul class="credit-cards list-inline">
+						{% if settings.accept_visa %}		<li><i class="fa fa-cc-visa fa-2x"></i></li>{% endif %}
+						{% if settings.accept_mastercard %}	<li><i class="fa fa-cc-mastercard fa-2x"></i></li>{% endif %}
+						{% if settings.accept_amex %}		<li><i class="fa fa-cc-amex fa-2x"></i></li>{% endif %}
+						{% if settings.accept_discover%}	<li><i class="fa fa-cc-discover fa-2x"></i></li>{% endif %}
+						{% if settings.accept_paypal %}		<li><i class="fa fa-cc-paypal fa-2x"></i></li>{% endif %}
+						{% if settings.accept_google %}		<li><i class="fa fa-google-wallet fa-2x"></i></li>{% endif %}
+						{% if settings.accept_bitcoin %}	<li><i class="fa fa-btc fa-2x"></i></li>{% endif %}
+					</ul>
+				</div>	
+			</div>
+
+		</div>
+
+	</footer> 

@@ -14,9 +14,10 @@ $product-price-weight: 600;
 }
 
 .product-list-title > a {
-	color: $link-gray-color;
+	color: $global-color-light;
 	display: block;
 	@include text-overflow;
+	margin-bottom: 5px;
 }
 
 .product-list-price{
@@ -27,21 +28,18 @@ $product-price-weight: 600;
 
 .product-list-thumb {
 	overflow: hidden;
+	height: 220px;
+	line-height: 220px;
 
 	a{
 		display: block;
+
+		img{
+			max-width: 100%;
+			height: auto;
+		}
 	}
 }
-
-.col-sm-3 > .product-list-thumb {
-	height: 120px;
-}
-
-.col-sm-4 > .product-list-thumb {
-	height: 175px;
-	line-height: 175px;
-}
-
 
 //
 // Product
@@ -63,4 +61,30 @@ $product-price-weight: 600;
 
 #productPrice, .selector-wrapper, .product-actions{
 	margin-bottom: $line-height-computed;
+}
+
+// Navigate through product in collection
+
+.product-nav > a{
+	position: fixed;
+	z-index: 71;
+	bottom: 450px;
+
+	.fa{
+		padding: .2em .6em;
+		border: 1px solid #ccc;
+	}
+
+	&:hover{
+		text-decoration: none;
+	}
+
+}
+
+.prev-product{
+	left: 1%;
+}
+
+.next-product{
+	right: 1%;
 }

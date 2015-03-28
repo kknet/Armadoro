@@ -72,9 +72,9 @@
 
 		{{ content_for_layout}}
 
-		{% include 'footer' %}
-
 	</div>
+
+	{% include 'footer' %}
 
 {% comment %}{{ 'jquery.flexslider-min.js' | asset_url | script_tag }}
 
@@ -90,36 +90,36 @@
 {% include 'currencies' %}
 
 <script>
-jQuery(document).ready(function($) {
-	$('#productThumb').royalSlider({
-		fullscreen: {
-			enabled: true,
-			nativeFS: true
-		},
-		controlNavigation: 'thumbnails',
-		autoScaleSlider: true, 
-		autoScaleSliderWidth: 960,     
-		autoScaleSliderHeight: 850,
-		loop: false,
-		imageScaleMode: 'fit-if-smaller',
-		navigateByClick: true,
-		numImagesToPreload:2,
-		arrowsNav:true,
-		arrowsNavAutoHide: true,
-		arrowsNavHideOnTouch: true,
-		keyboardNavEnabled: true,
-		fadeinLoadedSlide: true,
-		globalCaption: false,
-		globalCaptionInside: false,
-		thumbs: {
-			appendSpan: true,
-			firstMargin: true,
-			spacing: 10,
-			paddingTop: 10,
-			paddingBottom: 21
-		}
+	jQuery(document).ready(function($) {
+		$('#productThumb').royalSlider({
+			fullscreen: {
+				enabled: true,
+				nativeFS: true
+			},
+			controlNavigation: 'thumbnails',
+			autoScaleSlider: true, 
+			autoScaleSliderWidth: 960,     
+			autoScaleSliderHeight: 850,
+			loop: false,
+			imageScaleMode: 'fit-if-smaller',
+			navigateByClick: true,
+			numImagesToPreload:2,
+			arrowsNav:true,
+			arrowsNavAutoHide: true,
+			arrowsNavHideOnTouch: true,
+			keyboardNavEnabled: true,
+			fadeinLoadedSlide: true,
+			globalCaption: false,
+			globalCaptionInside: false,
+			thumbs: {
+				appendSpan: true,
+				firstMargin: true,
+				spacing: 10,
+				paddingTop: 10,
+				paddingBottom: 21
+			}
+		});
 	});
-});
 </script>
 
 

@@ -21,9 +21,9 @@
 		{% endif %}	
 
 		<script type="text/javascript">
-		if ($('#productThumb').length > 0) {
-			$( "#productPhoto" ).hide();
-		}
+			if ($('#productThumb').length > 0) {
+				$( "#productPhoto" ).hide();
+			}
 		</script>
 
 	</div>
@@ -102,6 +102,8 @@
 
 				<span id="variantQuantity" class="variant-quantity"></span>
 			</form>
+			{% include 'wishlist-product' %}
+			
 
 		</div>
 
@@ -174,6 +176,22 @@
 
 	</div>
 </div>
+
+{% if collection %}
+{% if collection.previous_product or collection.next_product %}
+<div class="product-nav">     
+	{% if collection.previous_product %}
+	{% capture prev_url %}{{ collection.previous_product}}#content{% endcapture %}
+	<a href="{{ prev_url }}" class="prev-product"><i class="fa fa-angle-left fa-2x"></i></a>
+	{% endif %}
+	{% if collection.next_product %}
+	{% capture next_url %}{{ collection.next_product}}#content{% endcapture %}
+	<a href="{{ next_url }}" class="next-product"><i class="fa fa-angle-right fa-2x"></i></a>
+	{% endif %}
+</div>
+{% endif %}
+{% endif %}
+
 {% if settings.related_products_enable %}
 {% assign grid_item_width = 'large--one-fifth medium--one-third small--one-half' %}
 {% include 'related-products' %}
@@ -277,4 +295,4 @@
 		$('#variantBreak').removeClass('hr--clear');
 		{% endif %}
 	});
-	</script>
+</script>

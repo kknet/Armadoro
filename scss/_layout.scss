@@ -1,0 +1,98 @@
+$footer-color:		#B6B7BD;
+
+//
+// Header
+// --------------------------------------------------
+
+header{
+	margin: 0;
+
+	@media (min-width: $grid-float-breakpoint){
+		margin: 0 0 $line-height-computed;
+	}
+
+	.logo{
+		font-size: $h2;
+		text-align: center;
+
+		> a{
+			color: $text-color;
+			@include uppercase();
+
+			&:hover{
+				text-decoration: none;
+			}
+		}
+
+	}
+
+	.tagline {
+		display: block;
+		text-transform: lowercase;
+		font-family: $font-family-serif;
+		line-height: 1.5;
+	}
+}
+
+
+//
+// Footer
+// --------------------------------------------------
+
+footer{
+	color: 		$footer-color;
+	background: $inverse-bg;
+	margin-top: ($line-height-computed * 2);
+	padding:	($line-height-computed * 2) 0;
+
+	a{
+		color: $footer-color;
+		line-height: 30px;
+
+		&:hover, &:focus{
+			color: darken($footer-color, 10%);
+		}
+	}
+
+	.footer-title{
+		font-size: $h5;
+		@include uppercase();
+		margin: $line-height-computed 0 ($line-height-computed / 2);
+
+		@media (min-width: $grid-float-breakpoint){
+			margin: 0 0 ($line-height-computed / 2);
+		}
+	}
+
+	.contentinfo, .credit-cards{
+		color: lighten($inverse-bg, 20%);
+
+		a { color: inherit; }
+	}
+
+	form.newsletter{
+		position: relative;
+
+		.email-submit {
+			background-color: rgba(0, 0, 0, 0);
+			border: 1px solid rgba(0, 0, 0, 0);
+			text-indent: -9999px;
+			width: 35px;
+			height: 35px;
+			position: absolute;
+			top: 0;
+			left: auto;
+			right: 0;
+			padding: 0;
+		}
+
+		.fa{
+			position: absolute;
+			top: 50%;
+			left: auto;
+			right: 10px;
+			font-size: 24px;
+			margin-top: -13px;
+		}
+	}
+}

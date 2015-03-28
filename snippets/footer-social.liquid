@@ -1,0 +1,78 @@
+
+<h4 class="footer-title">Follow Us</h4>
+
+<ul class="list-inline">
+
+	{% if settings.facebook_link != blank %}
+	<li>
+		<a href="{{ settings.facebook_link }}" title="{{ 'layout.footer.social' | t: shop: shop.name, social_media: 'Facebook' }}" target="_blank">
+			<i class="fa fa-facebook fa-lg"></i>
+		</a>
+	</li>
+	{% endif %}
+
+	{% if settings.twitter_link != blank %}
+	<li>
+		<a href="{{ settings.twitter_link }}" title="{{ 'layout.footer.social' | t: shop: shop.name, social_media: 'Twitter' }}" target="_blank">
+			<i class="fa fa-twitter fa-lg"></i>
+		</a>
+	</li>
+	{% endif %}
+
+	{% if settings.google_link != blank %}
+	<li>
+		<a href="{{ settings.google_link }}" title="{{ 'layout.footer.social' | t: shop: shop.name, social_media: 'Google+' }}" target="_blank">
+			<i class="fa fa-google-plus fa-lg"></i>
+		</a>
+	</li>
+	{% endif %}
+
+	{% if settings.instagram_link != blank %}
+	<li>
+		<a href="{{ settings.instagram_link }}" title="{{ 'layout.footer.social' | t: shop: shop.name, social_media: 'Instagram' }}" target="_blank">
+			<i class="fa fa-instagram fa-lg"></i>
+		</a>
+	</li>
+	{% endif %}
+
+	{% if settings.pinterest_link != blank %}
+	<li>
+		<a href="{{ settings.pinterest_link }}" title="{{ 'layout.footer.social' | t: shop: shop.name, social_media: 'Pinterest' }}" target="_blank">
+			<i class="fa fa-pinterest fa-lg"></i>
+		</a>
+	</li>
+	{% endif %}
+
+	{% if settings.youtube_link != blank %}
+	<li>
+		<a href="{{ settings.youtube_link }}" title="{{ 'layout.footer.social' | t: shop: shop.name, social_media: 'Youtube' }}" target="_blank">
+			<i class="fa fa-youtube fa-lg"></i>
+		</a>
+	</li>
+	{% endif %}
+
+	{% if settings.atom_link != blank %}
+	<li>
+		<a href="{{ settings.atom_link }}" title="{{ 'layout.footer.news' | t: shop: shop.name }}" target="_blank">
+			<i class="fa fa-rss fa-lg"></i>
+		</a>
+	</li>
+	{% endif %}
+
+	{% if settings.vimeo_link != blank %}
+	<li>
+		<a href="{{ settings.vimeo_link }}" title="{{ 'layout.footer.social' | t: shop: shop.name, social_media: 'Vimeo' }}"  target="_blank">
+		<i class="fa fa-vimeo-square fa-lg"></i>
+		</a>
+	</li>
+	{% endif %}
+
+	{% if settings.tumblr_link != blank %}
+	<li>
+		<a href="{{ settings.tumblr_link }}" title="{{ 'layout.footer.social' | t: shop: shop.name, social_media: 'Tumblr' }}" target="_blank">
+			<i class="fa fa-tumblr fa-lg"></i>
+		</a>
+	</li>
+	{% endif %}
+
+</ul>

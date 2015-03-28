@@ -1,3 +1,41 @@
+.collection-title {
+	font-family: $font-family-serif;
+	@include uppercase();
+	margin: 0;
+}
+
+//
+// Collection header
+// --------------------------------------------------
+
+.collection-header{
+	text-align: center;
+	position: relative;
+	margin: ($line-height-computed * 2) 0 0;
+
+	&:after{
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 0;
+		width: 100%;
+		border-bottom: 1px solid $global-border;
+	}
+
+	.collection-header-title{
+		font-size: 16px;
+		line-height: 24px;
+		background-color: #FFF;
+		display: inline-block;
+		vertical-align: top;
+		position: relative;
+		z-index: 10;
+		padding: 0 15px;
+		margin: 0;
+		@include uppercase();
+	}
+}
+
 //
 // Collection sidebar
 // --------------------------------------------------

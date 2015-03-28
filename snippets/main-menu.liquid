@@ -1,4 +1,4 @@
-<nav class="navbar" style="border-bottom: 1px solid #ebebeb;">
+<nav class="navbar navbar-main">
 	
 	<div class="navbar-header">
 		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
@@ -39,7 +39,7 @@
 				</ul>
 			</li>
 			{% else %}
-			<li {% if link.active %}class="uk-active"{% endif %}>
+			<li {% if link.active %}class="active"{% endif %}>
 				<a href="{{ link.url }}">{{ link.title }}</a>
 			</li>
 			{% endif %}

@@ -1,25 +1,14 @@
 <header>
 
-	<div class="navbar navbar-default navbar-static-top hidden-xs">
+	<nav class="nav-top cl-effect hidden-xs">
 		<div class="container">
-			<ul class="nav nav navbar-nav">
-				{% for link in linklists.toolbar-menu.links %}
-				<li {% if link.active %}class="active"{% endif %}><a href="{{ link.url }}">{{ link.title }}</a></li>
-				{% endfor %}
-			</ul>
-
-			<div class="navbar-left">
-				{% include 'currency-picker' %}
-			</div>
-
-			{% comment %}navbar-right{% endcomment %}
-			<ul class="nav navbar-nav navbar-right">
+			<ul class="list-inline pull-right">
 				{% if shop.customer_accounts_enabled %}
 				{% if customer %}
 				<li>
-					<a href="/account">{{ customer.first_name }} {{customer.last_name}}</a>
+					<a href="/account"><span data-hover="My Account">{{ customer.first_name }} {{customer.last_name}}</span></a>
 				</li>
-				<li>{{ 'Log out' | customer_logout_link }}</li>
+				{% comment %}<li>{{ 'Log out' | customer_logout_link }}</li>{% endcomment %}
 				{% else %}
 				<li>
 					{{ 'Log in' | customer_login_link }}
@@ -32,14 +21,27 @@
 				{% endif %}
 				{% endif %}
 				<li>
+					<a href="/pages/wish-list">Wish List</a>
+				</li>
+				<li>
 					<a href="/cart">
 						<i class="fa fa-shopping-cart fa-lg"></i>
 						{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})
 					</a>
 				</li>
 			</ul>
+
+			<ul class="list-inline">
+				{% for link in linklists.toolbar-menu.links %}
+				<li {% if link.active %}class="active"{% endif %}><a href="{{ link.url }}">{{ link.title }}</a></li>
+				{% endfor %}
+				<li>
+					{% include 'currency-picker' %}
+				</li>
+			</ul>
+
 		</div>
-	</div>
+	</nav>
 
 	<div class="container">
 
@@ -48,4 +50,5 @@
 			<small class="tagline">One of the kind jewelry from Greece</small>
 		</h1>
 	</div>
+
 </header>
