@@ -1,33 +1,47 @@
 {% layout settings.customer_layout %}
+
 <div id="customer-addresses">
+
 	<div class="page-header">
-		<h1>{{ 'customer.addresses.title' | t }}</h1>
+		<h2>{{ 'customer.addresses.title' | t }}</h2>
 	</div> 
 
 	<div class="row">
-		<div class="col-sm-6">
-			<div id="address_tables">  
+		
+		<div class="col-sm-5">
+			<p><a href="/account">Return to Account Details</a></p>
+		</div>
+
+		<div class="col-sm-7">
+
+			<div id="address_tables">
+
 				{% paginate customer.addresses by 10 %}
 
 				{% for address in customer.addresses %}
 				<div class="address_table">
+
 					<div id="view_address_{{address.id}}" class="customer_address">
+
 						<h4 class="address_title">
 							{{ address.street }} 
 							{% if address == customer.default_address %}<span class="default_address note">{{ 'customer.addresses.default' | t }}</span>{% endif %}
 						</h4>
+						<div class="view_address">
+							<p>
+								{{ address.company }}<br/>
+								{{ address.first_name }} {{address.last_name }}<br/>
+								{{ address.street }}<br/>
+								{{ address.city }} {% if address.province_code %}, {{ address.province_code }}{% endif %}<br/>
+								{{ address.country }} {{ address.zip }}<br/>
+								{{ address.phone }}
+							</p>
+						</div>
+
 						<p class="address_actions">
-							<span class="action_link action_edit">{{ 'customer.addresses.edit' | t | edit_customer_address_link: address.id }}</span>
+							<span class="action_link action_edit">{{ 'customer.addresses.edit' | t | edit_customer_address_link: address.id }}</span> | 
 							<span class="action_link action_delete">{{ 'customer.addresses.delete' | t | delete_customer_address_link: address.id }}</span>
 						</p>
-						<div class="view_address">
-							<p>{{ address.first_name }} {{address.last_name }}</p>
-							<p>{{ address.company }}</p>
-							<p>{{ address.street }}</p>
-							<p>{{ address.city }} {% if address.province_code %}, {{ address.province_code }}{% endif %}</p>
-							<p>{{ address.country }} {{ address.zip }}</p>
-							<p>{{ address.phone }}</p>
-						</div>
 					</div>    
 					<div id="edit_address_{{address.id}}" class="customer_address edit_address" style="display:none;">
 						{% form 'customer_address', address %}
@@ -90,8 +104,11 @@
 				{% endpaginate %}
 			</div>
 		</div>
+	</div> 
 
-		<div class="col-sm-6">
+	<div class="row">
+
+		<div class="col-sm-7 col-sm-offset-5">
 			<a href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;" class="add-new-address">{{ 'customer.addresses.add_new' | t }}</a>
 			<div id="add_address" class="customer_address edit_address" style="display:none;">
 				{% form 'customer_address', customer.new_address %}
@@ -149,7 +166,8 @@
 				{% endform %}
 			</div>
 		</div> 
-	</div> 
+	</div>
+
 
 </div>
 

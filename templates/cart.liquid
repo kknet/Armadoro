@@ -1,6 +1,6 @@
 <div id="cart">
 	<div class="page-header">
-		<h1 class="cart-header">{{ cart.item_count }} items in your basket</h1>
+		<h2 class="cart-header">{{ cart.item_count }} items in your basket</h2>
 	</div>
 
 	{% if cart.item_count > 0 %}
@@ -81,7 +81,7 @@
 	{% else %}
 
 	<div>
-		<h2>It appears that your cart is currently empty!</h2>
+		<h3>It appears that your cart is currently empty!</h3>
 		<h4>You can continue browsing <a href="/collections/all">here</a>.</h4>
 	</div>
 
