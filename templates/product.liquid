@@ -63,46 +63,46 @@
 			</ul>
 
 			<link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+			<div class="row product-actions">
+				<div class="col-sm-7">
+					<form action="/cart/add" method="post" enctype="multipart/form-data" id="addToCartForm">
+						<select name="id" id="productSelect" class="product-variants">
+							{% for variant in product.variants %}
+							{% if variant.available %}
 
-			<form action="/cart/add" method="post" enctype="multipart/form-data" id="addToCartForm" class="form-inline">
-				<select name="id" id="productSelect" class="product-variants">
-					{% for variant in product.variants %}
-					{% if variant.available %}
+							<option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
 
-					<option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
-
-					{% else %}
-					<option disabled="disabled">
-						{{ variant.title }} - Sold out
-					</option>
-					{% endif %}
-					{% endfor %}
-				</select>
+							{% else %}
+							<option disabled="disabled">
+								{{ variant.title }} - Sold out
+							</option>
+							{% endif %}
+							{% endfor %}
+						</select>
 
 
-				{% if settings.product_quantity_enable %}
-				<div class="form-group">
-					<label for="quantity" class="quantity-selector">Quantity</label>
-					<input type="number" id="quantity" name="quantity" value="1" min="1" class="form-control quantity-selector">
+						{% if settings.product_quantity_enable %}
+						<div class="form-group">
+							<label for="quantity" class="quantity-selector">Quantity</label>
+							<input type="number" id="quantity" name="quantity" value="1" min="1" class="form-control quantity-selector">
+						</div>
+						{% endif %}
+
+						<div class="form-group">
+							<button type="submit" name="add" id="addToCart" class="btn btn-primary btn-block">
+								<span id="addToCartText">Add to Shopping Bag</span>
+							</button>
+						</div>	
+
+						<span id="variantQuantity" class="variant-quantity"></span>
+					</form>
 				</div>
-				{% endif %}
-
-				<div class="row product-actions">
-					<div class="col-sm-7">
-						<button type="submit" name="add" id="addToCart" class="btn btn-primary btn-block">
-							<span id="addToCartText">Add to Shopping Bag</span>
-						</button>
+				<div class="col-sm-5">
+					<div class="form-group">
+						{% include 'wishlist-product' %}
 					</div>
-					<div class="col-sm-5">
-						<button type="submit" class="btn btn-default btn-block">
-							<span>Add to Wish List</span>
-						</button>
-					</div>
-				</div>	
-
-				<span id="variantQuantity" class="variant-quantity"></span>
-			</form>
-			{% include 'wishlist-product' %}
+				</div>
+			</div>
 			
 
 		</div>
@@ -193,7 +193,6 @@
 {% endif %}
 
 {% if settings.related_products_enable %}
-{% assign grid_item_width = 'large--one-fifth medium--one-third small--one-half' %}
 {% include 'related-products' %}
 {% endif %}
 

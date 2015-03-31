@@ -59,8 +59,22 @@ $product-price-weight: 600;
 	font-weight: $product-price-weight;
 }
 
-#productPrice, .selector-wrapper, .product-actions{
+#productPrice, .selector-wrapper{
 	margin-bottom: $line-height-computed;
+}
+
+@media (min-width: $grid-float-breakpoint){
+	
+	.product-actions{
+		letter-spacing: -.31em;
+
+		> div{
+			display: inline-block;
+			letter-spacing: 0.01em;
+			vertical-align: bottom;
+			float: none;
+		}
+	}
 }
 
 // Navigate through product in collection
