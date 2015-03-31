@@ -60,18 +60,21 @@
 </head>
 
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}">
-
 	
-	{% include 'header' %}
+	<div id="wrap">
 
-	<div class="container">
+		{% include 'header' %}
 
-		{% include 'main-menu' %}
+		<div class="container">
 
-		{% include 'breadcrumb' %}
+			{% include 'main-menu' %}
 
-		{{ content_for_layout}}
+			{% include 'breadcrumb' %}
 
+			{{ content_for_layout}}
+
+		</div>
+		
 	</div>
 
 	{% include 'footer' %}

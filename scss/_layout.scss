@@ -1,6 +1,31 @@
 $footer-color:		#B6B7BD;
 
 //
+// Sticky footer styles
+// --------------------------------------------------
+
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	position: initial;
+	margin-bottom: 390px;
+}
+
+#wrap{
+	padding-bottom: ($line-height-computed * 2);
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	// Set the fixed height of the footer here
+	height: 390px;
+}
+//
 // Header
 // --------------------------------------------------
 
@@ -39,7 +64,7 @@ header{
 // Footer
 // --------------------------------------------------
 
-footer{
+.footer{
 	color: 		$footer-color;
 	background: $inverse-bg;
 	margin-top: ($line-height-computed * 2);

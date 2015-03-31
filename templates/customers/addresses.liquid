@@ -8,18 +8,18 @@
 
 	<div class="row">
 		
-		<div class="col-sm-5">
+		<div class="col-sm-4">
 			<p><a href="/account">Return to Account Details</a></p>
 		</div>
 
-		<div class="col-sm-7">
+		<div class="col-sm-8">
 
 			<div id="address_tables">
 
 				{% paginate customer.addresses by 10 %}
 
 				{% for address in customer.addresses %}
-				<div class="address_table">
+				<div class="address_table well">
 
 					<div id="view_address_{{address.id}}" class="customer_address">
 
@@ -108,7 +108,7 @@
 
 	<div class="row">
 
-		<div class="col-sm-7 col-sm-offset-5">
+		<div class="col-sm-8 col-sm-offset-4">
 			<a href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;" class="add-new-address">{{ 'customer.addresses.add_new' | t }}</a>
 			<div id="add_address" class="customer_address edit_address" style="display:none;">
 				{% form 'customer_address', customer.new_address %}
