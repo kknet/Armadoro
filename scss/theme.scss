@@ -34,6 +34,7 @@ $inverse-bg:			#111111;
 
 @import "link-effects";
 @import "typography";
+@import "grid";
 @import "nav";
 @import "layout";
 @import "product";
@@ -85,6 +86,7 @@ a.btn-search {
 
 .section { margin: $line-height-computed 0px; }
 .margin-remove { margin: 0px !important; }
+.margin-bottom { margin-bottom: 20px !important; }
 
 
 //== Form errors
