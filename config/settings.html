@@ -204,15 +204,6 @@
 			<td><select name="frontpage_collection" class="collection" /></td>
 		</tr>
 		<tr>
-			<th><label for="frontpage_collection_layout">Product layout</label></th>
-			<td>
-				<select name="frontpage_collection_layout" id="frontpage_collection_layout">
-					<option value="auto">Automatic</option>
-					<option value="grid">Grid</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
 			<td colspan="2">
 				<h3>Homepage Content</h3>
 			</td>
@@ -235,15 +226,6 @@
 			</td>
 		</tr>
 		<tr class="horizontal">
-			<th><label for="products_per_row">Number of products per row</label></th>
-			<td>
-				<select name="products_per_row" id="products_per_row">
-					<option value="3" selected="selected">3</option>
-					<option value="4">4</option>
-				</select>
-			</td>
-		</tr>
-		<tr class="horizontal">
 			<th><label for="pagination_limit">Number of products per page</label></th>
 			<td><input type="number" name="pagination_limit" id="pagination_limit" value="24" /></td>
 		</tr>
@@ -256,6 +238,13 @@
 			<th><label for="filter_by_color">Filter by color</label></th>
 			<td>
 				<input type="text" name="filter_by_color" id="filter_by_color" value="" />
+				<small>List of colors you want to use separated with a comma</small>
+			</td>
+		</tr>
+		<tr class="horizontal">
+			<th><label for="filter_by_collection">Filter by collection</label></th>
+			<td>
+				<input type="text" name="filter_by_collection" id="filter_by_collection" value="" />
 				<small>List of colors you want to use separated with a comma</small>
 			</td>
 		</tr>

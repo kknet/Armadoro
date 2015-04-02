@@ -71,6 +71,13 @@
 	</div>
 </div>
 
+<section class="section">
+	<div>
+		<h2>{{ pages[settings.homepage].title }}</h2>
+		{{ pages[settings.homepage].content }}
+	</div>
+</section>
+
 <!-- Featured products -->
 <section class="section">
 	<div class="row">
@@ -78,39 +85,9 @@
 			<h2 class="collection-header-title">{{ collections.frontpage.title }}</h1>
 		</header>
 		{% for product in collections.Frontpage.products limit:4 %}
-			{% include 'product-loop' with 'col-sm-4' %}
+			{% include 'product-loop' with 'col-sm-3' %}
 		{% endfor %}
 	</div>
 </section>
-	<!-- End products -->
+<!-- End products -->
 
-	<!-- start content page -->
-	{% if settings.homepage != '' %}
-	{% assign helper_welcome = false %}
-
-	{% if pages[settings.homepage].content contains 'where users go when first trying to determine a level of trust' %}
-	{% assign helper_welcome = true %}
-	{% endif %}
-
-	{% if pages[settings.homepage].content contains 'Write a few sentences to tell people about your store' %}
-	{% assign helper_welcome = true %}
-	{% endif %}
-
-	<div class="span12 clearfix {% if helper_welcome %}helper-section{% endif %}">
-		{% if helper_welcome %}
-		<div class="note helper-note helper-homepage-page">
-			<i class="icon-pages helper-icon"></i>
-			<h3>{{ 'home_page.onboarding.page_title' | t }}</h3>
-			<p>{{ 'home_page.onboarding.page_text' | t }}</p>
-			<p><a href="/admin/pages" class="admin-btn-primary">{{ 'home_page.onboarding.edit_page' | t }}</a><a class="secondary-action" href="/admin/themes/current/settings">{{ 'home_page.onboarding.view_settings' | t }}</a></p>
-		</div>
-		{% endif %}
-		<div class="p30 clearfix  {% if helper_welcome %}helper-content{% endif %}">
-			<div class="intro clearfix">
-				<h2>{{ pages[settings.homepage].title }}</h2>
-				{{ pages[settings.homepage].content }}
-			</div>
-		</div>
-	</div>
-	{% endif %}
-	<!-- end content page -->
