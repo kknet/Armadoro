@@ -28,13 +28,25 @@
 			{% if linklists[child_list_handle].links != blank %}
 			<li class="{% if link.active %} active{% endif %} dropdown">
 				<a href="{{ link.url }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ link.title }}</a>
-				<ul class="dropdown-menu" role="menu">
-					{% for childlink in linklists[child_list_handle].links %}
-					<li {% if childlink.active %}class="active"{% endif %}>
-						<a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
-					</li>
-					{% endfor %}
-				</ul>
+				<div class="dropdown-menu row" role="menu {{child_list_handle}}">
+					<div class="col-sm-4">
+						<ul class="nav-side">
+							<li class="nav-header">Shop By</li>
+							{% for childlink in linklists[child_list_handle].links %}
+							<li {% if childlink.active %}class="active"{% endif %}>
+								<a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+					<div class="col-sm-8">
+						<div class="row">
+							{% for product in collections[settings.child_list_handle].products limit:2 %}
+								{% include 'product-loop' with 'col-sm-6' %}
+							{% endfor %}
+						</div>
+					</div>
+				</div>
 			</li>
 			{% else %}
 			<li {% if link.active %}class="active"{% endif %}>

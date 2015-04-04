@@ -6,7 +6,7 @@
 				{% if shop.customer_accounts_enabled %}
 				{% if customer %}
 				<li>
-					<a href="/account"><span data-hover="My Account">{{ customer.first_name }} {{customer.last_name}}</span></a>
+					<a href="/account"><span class="animate" data-hover="My Account">{{ customer.first_name }} {{customer.last_name}}</span></a>
 				</li>
 				{% comment %}<li>{{ 'Log out' | customer_logout_link }}</li>{% endcomment %}
 				{% else %}

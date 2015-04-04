@@ -7,7 +7,7 @@
 
 		<div class="product-photo-container" id="productPhoto">
 			{% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
-			<img id="productPhotoImg" src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}">
+			<img id="productPhotoImg" class="img-responsive" src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}">
 		</div>
 
 		{% if product.images.size > 1 %}
@@ -169,7 +169,9 @@
 			<strong>View More</strong> <br>
 			<ul>
 				{% for collection in product.collections %}
+				{% unless collection.handle == 'frontpage' %}
 				<li><a href="{{collection.url}}">View all {{ collection.title }}</a></li>
+				{% endunless %}
 				{% endfor %}
 			</ul>
 		</p>

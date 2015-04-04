@@ -1,27 +1,25 @@
 	<h5 class="filter-title">Shop by category</h5>
 	<ul class="filter">
-		<li>
-			<a href="/collections/all">All</a>
+		{% for link in linklists.sidebar-filter.links %}
+		<li {% if link.active %}class="active"{% endif %}>
+			<a href="{{ link.url }}">{{ link.title }}</a>
 		</li>
-		{% for c in collections %}
-		{% unless c.handle == 'all' %}
-		{% if collection.handle == c.handle %}
-		<li class="active">
-			<a href="/collections/{{c.handle}}">{{c.title}}</a>
-		</li>
-		{% else %}
-		<li>
-			<a href="/collections/{{c.handle}}">{{c.title}}</a>
-		</li>
-		{% endif %}
-		{% endunless %}
 		{% endfor %}
 	</ul>
 
-{% if settings.filter_by_collection != '' %}
+
 	<h5 class="filter-title">Shop by collection</h5>
 	<ul class="filter">
-		{% assign tags = settings.filter_by_collection | split: ',' %}
+		{% for link in linklists.collections.links %}
+		<li {% if link.active %}class="active"{% endif %}>
+			<a href="{{ link.url }}">{{ link.title }}</a>
+		</li>
+		{% endfor %}
+	</ul>
+
+	<h5 class="filter-title">Shop by color</h5>
+	<ul class="filter">
+		{% assign tags = settings.filter_by_color | split: ',' %}
 
 		{% for t in tags %}
 		{% assign tag = t | strip %}
@@ -36,22 +34,3 @@
 		{% endif %}
 		{% endfor %}
 	</ul>
-{% endif %}
-
-<h5 class="filter-title">Shop by color</h5>
-<ul class="filter">
-	{% assign tags = settings.filter_by_color | split: ',' %}
-
-	{% for t in tags %}
-	{% assign tag = t | strip %}
-	{% if current_tags contains tag %}
-	<li class="active">
-		{{ tag | link_to_remove_tag: tag }}
-	</li>
-	{% elsif collection.all_tags contains tag %}
-	<li>
-		{{ tag | link_to_tag: tag }}
-	</li>
-	{% endif %}
-	{% endfor %}
-</ul>

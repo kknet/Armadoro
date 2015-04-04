@@ -38,6 +38,20 @@
 		margin-bottom: -1px;
 		border-bottom: 1px solid #222;
 	}
+
+	.nav > li.dropdown {
+
+	}
+
+	.dropdown-menu { 
+		width: 670px; 
+		padding: 30px 20px 20px;
+	}
+
+	.product-list-thumb{
+		height: 120px;
+		line-height: 120px;
+	}
 }
 
 .navbar-left > li > a, .navbar-brand{
@@ -86,14 +100,13 @@
 .nav-side{
 	@extend .list-unstyled;
 
-	> li > a{
-		line-height: 24px;
+	> li{
+		margin-bottom: 12px;
+		
+		&.nav-header{
+			font-size: $h5;
+			@include uppercase();
+			margin-bottom: $line-height-computed;
+		}
 	}
-}
-
-.nav-header{
-	font-size: $h5;
-	@include uppercase();
-	font-weight: 600;
-	margin: ($line-height-computed / 2) 0;
 }

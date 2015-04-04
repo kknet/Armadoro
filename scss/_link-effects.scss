@@ -7,7 +7,7 @@ nav a {
 	overflow: hidden;
 }
 
-.cl-effect a span {
+.cl-effect a span.animate {
 	position: relative;
 	display: inline-block;
 	-webkit-transition: -webkit-transform 0.3s;
@@ -15,7 +15,7 @@ nav a {
 	transition: transform 0.3s;
 }
 
-.cl-effect a span::before {
+.cl-effect a span.animate::before {
 	position: absolute;
 	top: 100%;
 	content: attr(data-hover);
@@ -25,8 +25,8 @@ nav a {
 	transform: translate3d(0,0,0);
 }
 
-.cl-effect a:hover span,
-.cl-effect a:focus span {
+.cl-effect a:hover span.animate,
+.cl-effect a:focus span.animate {
 	-webkit-transform: translateY(-100%);
 	-moz-transform: translateY(-100%);
 	transform: translateY(-100%);
