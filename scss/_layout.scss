@@ -9,21 +9,12 @@ html {
 	min-height: 100%;
 }
 
-body {
-	position: initial;
-	margin-bottom: 390px;
-}
-
 #wrap{
 	padding-bottom: ($line-height-computed * 2);
 }
 
 .footer {
-	position: absolute;
-	bottom: 0;
 	width: 100%;
-	// Set the fixed height of the footer here
-	height: 390px;
 }
 //
 // Header

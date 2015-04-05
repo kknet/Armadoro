@@ -28,30 +28,16 @@
 <div class="row">
 	<div class="col-6">
 		<div class="margin-bottom">
-			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-				<!-- Indicators -->
-				<ol class="carousel-indicators">
-					<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-					<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-					<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-				</ol>
-
-				<!-- Wrapper for slides -->
-				<div class="carousel-inner" role="listbox">
-					<div class="item active">
-						<img src="http://fakeimg.pl/730x500/f5f5f5/ccc/">
-					</div>
-				</div>
-
-				<!-- Controls -->
-				<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-					<span class="icon-prev" aria-hidden="true"></span>
-					<span class="sr-only">Previous</span>
+			
+			<div id="home-slider" class="royalSlider rsDefault">
+				<!-- simple image -->
+				<a href="http://dimsemenov.com/plugins/royal-slider/templates/">
+					<img class="rsImg" src="http://fakeimg.pl/730x500/f5f5f5/ccc/" alt="image description" />
 				</a>
-				<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-					<span class="icon-next" aria-hidden="true"></span>
-					<span class="sr-only">Next</span>
-				</a>
+
+				<!-- lazy loaded image-->
+				<a class="rsImg" href="http://fakeimg.pl/730x500/f5f5f5/ccc/">image description</a>
+
 			</div>
 		</div>
 	</div>
@@ -59,12 +45,12 @@
 		<div class="row">
 			<div class="col-md-12 col-xs-6">
 				<div class="margin-bottom">
-					<img class="img-responsive" src="http://fakeimg.pl/400x200/f5f5f5/ccc/">
+					<img class="img-responsive" src="http://fakeimg.pl/390x200/f5f5f5/ccc/">
 				</div>
 			</div>
 			<div class="col-md-12 col-xs-6">
 				<div class="margin-bottom">
-					<img class="img-responsive" src="http://fakeimg.pl/400x200/f5f5f5/ccc/">
+					<img class="img-responsive" src="http://fakeimg.pl/390x200/f5f5f5/ccc/">
 				</div>
 			</div>
 		</div>
@@ -83,11 +69,11 @@
 	<div class="row">
 		<header class="collection-header">
 			<h2 class="collection-header-title">{{ collections.frontpage.title }}</h1>
-		</header>
-		{% for product in collections.Frontpage.products limit:4 %}
-			{% include 'product-loop' with 'col-sm-3' %}
-		{% endfor %}
-	</div>
-</section>
-<!-- End products -->
+			</header>
+			{% for product in collections.Frontpage.products limit:4 %}
+			{% include 'product-loop' with 'col-md-3 col-sm-6' %}
+			{% endfor %}
+		</div>
+	</section>
+	<!-- End products -->
 
