@@ -155,10 +155,11 @@
       }, 1)
     }
     //disable scrolling on mobiles (they ignore overflow:hidden)
-    $('body').on('touchmove.bs', function(e) {
-      if (!$(event.target).closest('.offcanvas').length)
-        e.preventDefault();
-    });
+    
+    // $('body').on('touchmove.bs', function(e) {
+    //   if (!$(event.target).closest('.offcanvas').length)
+    //     e.preventDefault();
+    // });
   }
 
   OffCanvas.prototype.enableScrolling = function() {

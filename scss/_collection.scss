@@ -73,8 +73,30 @@
 	}
 
 	> li.active > a{
-			&:before{
-				content: "\f14a";
-			}
+		&:before{
+			content: "\f14a";
+		}
+	}
+}
+
+// Offcanvas Filter
+
+
+#offcanvasFilter{
+	
+	@media (max-width: $screen-sm-max) {
+
+		background: #fff;
+		position: absolute;
+		width: 250px;
+		// height: 100%;
+		padding: 15px;
+		display: none;
+		z-index: 999;
+		overflow-y: auto;
+
+		&.in{
+			display: block;
+		}
 	}
 }

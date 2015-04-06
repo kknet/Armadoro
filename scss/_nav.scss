@@ -31,33 +31,48 @@
 // --------------------------------------------------
 
 .navbar-main{
-	border-bottom: 1px solid $global-border;
+	background-color: #fff;
+	border-color: $global-border;
 
-	.navbar-nav > li > a:hover, > li > a:focus, > li.active > a{
-		background: #FFF;
-		margin-bottom: -1px;
-		border-bottom: 1px solid #222;
+	@media (max-width: $screen-xs-max){
+		background: #F8F8F8;
+		position: absolute;
+		width: 100%;
+		top: 0;
+		left: 0;
+		right: 0;
 	}
 
-	.nav > li.dropdown {
-
+	.navbar-collapse {
+		border-color: $global-border;
 	}
 
-	.dropdown-menu { 
-		width: 670px; 
-		padding: 30px 20px 20px;
+	.navbar-toggle .icon-bar{
+		background-color: $text-color;
 	}
 
-	.product-list-thumb{
-		height: 120px;
-		line-height: 120px;
+	.navbar-brand{
+		float: right;
+		color: inherit;
+	}
+
+	.navbar-toggle{
+		float: left;
 	}
 }
 
-.navbar-left > li > a, .navbar-brand{
+.empty-div {
+	display: none;
+
+	@media (max-width: $screen-xs-max){
+		margin-top: 55px;
+		display: block;
+	}
+}
+
+.navbar-left > li > a{
 	@include uppercase();
 }
-
 
 .navbar-secondary{
 	border-top: 1px solid $navbar-inverse-border;
@@ -65,14 +80,6 @@
 	@include box-shadow($shadow);
 }
 
-.navbar-toggle {
-	float: left;
-	margin-left: $navbar-padding-horizontal;
-}
-
-.navbar-collapse{
-	padding-left: 0;
-}
 
 .navbar-basket{
 	float: right;
@@ -87,10 +94,39 @@
 	}
 }
 
+// search
+
+.fa-search{
+	cursor: pointer;
+}
+
 #search-field.form-control{
+	width: 95%;
+	font-size: 14px;
+	margin: 0 10px 10px;
+	outline: 0;
 	border: 0;
-	background: transparent;
-	@include box-shadow(none);
+	background: 0;
+	display: inline-block;
+	border-bottom: 1px solid #999;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	border-radius: 0;
+	-webkit-transition: all .1s linear;
+	transition: all .1s linear;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+
+	&:focus{
+		border-color: #000;
+	}
+
+}
+
+#collapseSearch{
+	@media (max-width: $screen-xs-max){
+		margin-top: 55px;
+	}
 }
 
 //
@@ -107,103 +143,6 @@
 			font-size: $h5;
 			@include uppercase();
 			margin-bottom: $line-height-computed;
-		}
-	}
-}
-
-
-// Navmenu and offcanvas navbar
-// --------------------------------------------------
-
-$zindex-navmenu-fixed:     1030 !default;
-
-// Basics of a navmenu
-$navmenu-width:                     300px !default;
-$navmenu-margin-vertical:           (0.5 * $line-height-computed) !default;
-$navmenu-default-color:             #777 !default;
-$navmenu-default-bg:                #f8f8f8 !default;
-$navmenu-default-border:            darken($navmenu-default-bg, 6.5%) !default;
-
-// Wrapper and base class
-//
-// Provide a static navmenu from which we expand to create the fixed navmenu
-// variations.
-
-
-.navmenu,
-.navbar-offcanvas {
-	width: $navmenu-width;
-	height: 100%;
-	border-width: 1px;
-	border-style: solid;
-	border-radius: $border-radius-base;
-}
-
-.navmenu-fixed-left,
-.navmenu-fixed-right,
-.navbar-offcanvas {
-	position: fixed;
-	z-index: $zindex-navmenu-fixed;
-	top: 0;
-	border-radius: 0;
-	overflow-y: auto;
-}
-.navmenu-fixed-left,
-.navbar-offcanvas.navmenu-fixed-left {
-	left: 0;
-	right: auto;
-	border-width: 0 1px 0 0;
-	bottom: 0;
-}
-.navmenu-fixed-right,
-.navbar-offcanvas {
-	left: auto;
-	right: 0;
-	border-width: 0 0 0 1px;
-}
-
-.navmenu-nav {
-	margin-bottom: $navmenu-margin-vertical;
-
-	&.dropdown-menu {
-		position: static;
-		margin: 0;
-		padding-top: 0;
-		float: none;
-		border: none;
-		@include box-shadow(none);
-		border-radius: 0;
-	}
-}
-
-.navbar-offcanvas {
-	
-	.navbar-nav {
-		margin: 0;
-	}
-
-	@media (min-width: $grid-float-breakpoint) {
-		width: auto;
-		border-top: 0;
-		box-shadow: none;
-
-		&.offcanvas {
-			position: static;
-			display: block !important;
-			height: auto !important;
-			padding-bottom: 0; 
-			overflow: visible !important;
-		}
-
-		.navbar-nav.navbar-left:first-child {
-			margin-left: -$navbar-padding-horizontal;
-		}
-		.navbar-nav.navbar-right:last-child {
-			margin-right: -$navbar-padding-horizontal;
-		}
-
-		.navmenu-brand {
-			display: none;
 		}
 	}
 }
