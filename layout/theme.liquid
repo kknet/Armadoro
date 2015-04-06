@@ -62,6 +62,8 @@
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}">
 	
 	<div id="wrap">
+		
+		{% comment %}{% include 'main-menu-mobile' %}{% endcomment %}
 
 		{% include 'header' %}
 
@@ -88,6 +90,7 @@
 {{ 'jquery.fancybox.js' | asset_url | script_tag }}{% endcomment %}
 
 {{ 'bootstrap.min.js' | asset_url | script_tag }}
+{{ 'offcanvas.js' | asset_url | script_tag }}
 {{ 'jquery.royalslider.min.js' | asset_url | script_tag }}
 
 {% include 'currencies' %}

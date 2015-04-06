@@ -110,3 +110,100 @@
 		}
 	}
 }
+
+
+// Navmenu and offcanvas navbar
+// --------------------------------------------------
+
+$zindex-navmenu-fixed:     1030 !default;
+
+// Basics of a navmenu
+$navmenu-width:                     300px !default;
+$navmenu-margin-vertical:           (0.5 * $line-height-computed) !default;
+$navmenu-default-color:             #777 !default;
+$navmenu-default-bg:                #f8f8f8 !default;
+$navmenu-default-border:            darken($navmenu-default-bg, 6.5%) !default;
+
+// Wrapper and base class
+//
+// Provide a static navmenu from which we expand to create the fixed navmenu
+// variations.
+
+
+.navmenu,
+.navbar-offcanvas {
+	width: $navmenu-width;
+	height: 100%;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: $border-radius-base;
+}
+
+.navmenu-fixed-left,
+.navmenu-fixed-right,
+.navbar-offcanvas {
+	position: fixed;
+	z-index: $zindex-navmenu-fixed;
+	top: 0;
+	border-radius: 0;
+	overflow-y: auto;
+}
+.navmenu-fixed-left,
+.navbar-offcanvas.navmenu-fixed-left {
+	left: 0;
+	right: auto;
+	border-width: 0 1px 0 0;
+	bottom: 0;
+}
+.navmenu-fixed-right,
+.navbar-offcanvas {
+	left: auto;
+	right: 0;
+	border-width: 0 0 0 1px;
+}
+
+.navmenu-nav {
+	margin-bottom: $navmenu-margin-vertical;
+
+	&.dropdown-menu {
+		position: static;
+		margin: 0;
+		padding-top: 0;
+		float: none;
+		border: none;
+		@include box-shadow(none);
+		border-radius: 0;
+	}
+}
+
+.navbar-offcanvas {
+	
+	.navbar-nav {
+		margin: 0;
+	}
+
+	@media (min-width: $grid-float-breakpoint) {
+		width: auto;
+		border-top: 0;
+		box-shadow: none;
+
+		&.offcanvas {
+			position: static;
+			display: block !important;
+			height: auto !important;
+			padding-bottom: 0; 
+			overflow: visible !important;
+		}
+
+		.navbar-nav.navbar-left:first-child {
+			margin-left: -$navbar-padding-horizontal;
+		}
+		.navbar-nav.navbar-right:last-child {
+			margin-right: -$navbar-padding-horizontal;
+		}
+
+		.navmenu-brand {
+			display: none;
+		}
+	}
+}
