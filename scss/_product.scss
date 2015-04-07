@@ -68,9 +68,10 @@ $product-price-weight: 600;
 	margin-bottom: $line-height-computed;
 }
 
-@media (min-width: $grid-float-breakpoint){
-	
-	.product-actions{
+.product-actions{
+
+	@media (min-width: $screen-md-min){
+
 		letter-spacing: -.31em;
 
 		> div{

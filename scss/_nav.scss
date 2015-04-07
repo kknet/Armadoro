@@ -9,11 +9,14 @@
 	ul{
 		margin: 0;
 	}
+
+	.navbar-text{
+		margin-top: 0;
+		margin-bottom: 0;
+	}
 }
 
 #currencies{
-	margin: -14px 10px 0;
-	display: block;
 	color: $global-color-light;
 
 	span{
@@ -43,6 +46,10 @@
 		right: 0;
 	}
 
+	.navbar-nav + .navbar-nav{
+		border-top: 1px solid $global-border;
+	}
+
 	.navbar-collapse {
 		border-color: $global-border;
 	}
@@ -59,6 +66,15 @@
 	.navbar-toggle{
 		float: left;
 	}
+}
+
+// Buttons in navbars
+
+.navbar-btn-group {
+	padding: 10px 15px;
+	margin-right: -15px;
+	margin-left: -15px;
+	border-bottom: 1px solid $global-border;
 }
 
 .empty-div {

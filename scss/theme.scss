@@ -52,6 +52,10 @@ $inverse-bg:			#111111;
 //== Misc
 // --------------------------------------------------
 
+a:focus{
+	outline: none;
+}
+
 ul ,ol {
 	padding-left: 15px;
 }
@@ -71,6 +75,19 @@ ul ,ol {
 .white-space{
 	content: "";
 	height: ($line-height-computed * 2);
+}
+
+.text-truncate{
+	@include text-overflow;
+}
+
+.text-truncate-breadcrumb{
+	@include text-overflow;
+	vertical-align: middle;
+
+	@media (max-width: $screen-xs-max){
+		max-width: 180px;
+	}
 }
 
 .btn{

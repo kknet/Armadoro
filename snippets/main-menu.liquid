@@ -24,8 +24,23 @@
 		</div>
 
 		<div class="collapse navbar-collapse" id="navbar-collapse">
+
+			<div class="navbar-btn-group visible-xs-block">
+				<div id="currencies" class="btn-group btn-group-justified" role="group" aria-label="...">
+					<div class="btn-group" role="group">
+						<span data-currency="EUR" class="btn btn-default btn-xs">&euro; EUR</span>
+					</div>
+					<div class="btn-group" role="group">
+						<span  data-currency="USD" class="btn btn-default btn-xs">&dollar; USD</span>
+					</div>
+				</div>
+			</div>
 			
-			<ul class="nav navbar-left navbar-nav">
+			<p class="navbar-text navbar-right hidden-xs" data-toggle="collapse" href="#collapseSearch" aria-expanded="false">
+				<i class="fa fa-search fa-lg"></i>
+			</p>
+
+			<ul class="nav navbar-nav navbar-left">
 				{% for link in linklists.main-menu.links %}
 				{% assign child_list_handle = link.title | handleize %}
 				{% if linklists[child_list_handle].links != blank %}
@@ -47,15 +62,33 @@
 				{% endfor %}
 			</ul>
 
-			<p class="navbar-text navbar-right hidden-xs" data-toggle="collapse" href="#collapseSearch" aria-expanded="false">
-				<i class="fa fa-search fa-lg"></i>
-			</p>
-
 			<ul class="nav navbar-nav visible-xs-block">
+				<li class="divider"></li>
 				{% for link in linklists.toolbar-menu.links %}
 				<li {% if link.active %}class="active"{% endif %}><a href="{{ link.url }}">{{ link.title }}</a></li>
 				{% endfor %}
 			</ul>
+
+			{% if shop.customer_accounts_enabled %}
+			<ul class="nav navbar-nav visible-xs-block">
+				{% if customer %}
+				<li class="divider"></li>
+				<li>
+					<a href="/account"><span class="animate" data-hover="My Account">{{ customer.first_name }} {{customer.last_name}}</span></a>
+				</li>
+				{% else %}
+				<li class="divider"></li>
+				<li>
+					{{ 'Log in' | customer_login_link }}
+				</li>
+				<li>
+					{% if shop.customer_accounts_optional %}
+					{{ 'Register' | customer_register_link }}
+					{% endif %}
+				</li>
+				{% endif %}
+			</ul>
+			{% endif %}
 
 		</div>
 	</div>
