@@ -1,3 +1,8 @@
+#collection{
+	// position: relative;
+	// overflow: hidden;
+}
+
 .collection-title {
 	font-family: $font-family-serif;
 	@include uppercase();
@@ -81,18 +86,40 @@
 
 // Offcanvas Filter
 
+.toggle-filter{
+	float: right;
+	line-height: 26px;
+	display: none;
+
+	@media (max-width: $screen-md){
+		display: block;
+	}
+}
+
+$offcanvasFilter-width: 220px;
+
+.offcanvas-exit{
+	display: none;
+	
+	@media (max-width: $screen-sm-max) {
+		display: block;	
+	}
+}
 
 #offcanvasFilter{
 	
 	@media (max-width: $screen-sm-max) {
 
+		-webkit-transform: translate(-$offcanvasFilter-width, 0);
+		transform: translate(-$offcanvasFilter-width, 0);
+
 		background: #fff;
 		position: absolute;
-		width: 250px;
+		width: $offcanvasFilter-width;
 		// height: 100%;
 		padding: 15px;
 		display: none;
-		z-index: 999;
+		z-index: 1;
 		overflow-y: auto;
 
 		&.in{
