@@ -9,7 +9,12 @@
 	<h2>{{ page.title }}</h2>
 </div>
 
-<div class="section">
+
+<div id="lookbook-slider" class="royalSlider rsDefault">
+	{{ pages.lookbook.content }}
+</div>
+
+{% comment %}<div class="section">
 	<div class="row">
 		<div class="col-sm-5 col-sm-offset-1">
 			<img src="https://cdn.shopify.com/s/files/1/0800/2449/files/img_2.jpg?10260062163650592069"
@@ -48,4 +53,4 @@
 			class="img-responsive">
 		</div>
 	</div>
-</div>
+</div>{% endcomment %}

@@ -108,6 +108,18 @@
 </script>
 
 <script>
+    jQuery(document).ready(function($) {
+        $("#lookbook-slider").royalSlider({
+            // options go here
+            // as an example, enable keyboard arrows nav
+            keyboardNavEnabled: true,
+            controlNavigation: 'none',
+            imageScaleMode: 'none'
+        });  
+    });
+</script>
+
+<script>
 	jQuery(document).ready(function($) {
 		$('#productThumb').royalSlider({
 			fullscreen: {
