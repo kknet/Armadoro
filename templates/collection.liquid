@@ -32,6 +32,12 @@
 			</div>
 
 			<hr>
+			{% if collection.image %}
+				<div class="hidden-xs">
+					<img class="img-responsive" src="{{ collection.image | img_url: 'original' }}">
+					<hr>
+				</div>
+			{% endif %}
 
 			<div class="row">
 				<div class="col-sm-3 col-xs-6 total-products">
