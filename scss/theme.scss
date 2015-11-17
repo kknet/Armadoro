@@ -238,3 +238,20 @@ a.btn-search {
 		margin-top: 0;
 	}
 }
+
+
+//== Dropdowns
+// --------------------------------------------------
+
+@media (min-width: $grid-float-breakpoint){
+	.dropdown:hover {
+
+		> a{
+			background-color: $nav-link-hover-bg;
+		}
+		
+		.dropdown-menu {
+			display: block;
+		}
+	}
+}

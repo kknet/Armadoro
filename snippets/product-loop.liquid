@@ -3,7 +3,11 @@
 <div class="product-list {{ product-loop }}">
 	<div class="product-list-thumb">
 		<a href="{{ product.url | within: collection }}">
-			<img src="{{ product.featured_image.src | product_img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}" />
+			{% if product.title contains "Odessa" %}
+				<img src="{{ product.featured_image.src | product_img_url: 'compact' }}" alt="{{ product.featured_image.alt | escape }}" />
+			{% else %}
+				<img src="{{ product.featured_image.src | product_img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}" />
+			{% endif %}
 		</a>
 	</div>
 	<div class="product-list-price">

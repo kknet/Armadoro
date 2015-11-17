@@ -13,10 +13,15 @@
 					{% if settings.footer_display_newsletter %}
 					<div class="col-sm-6">
 						<h4 class="footer-title">{{settings.footer_display_newsletter_title}}</h4>
-						<form class="newsletter" action="{{ settings.mailing_list_form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
-							<input type="email" class="form-control" placeholder="Sign up to {{ shop.name }} news" name="email" id="mail" />
+						{% if settings.newsletter_form_action != blank %}
+						{% assign form_action = settings.newsletter_form_action %}
+						{% else %}
+						{% assign form_action = '#' %}
+						{% endif %}
+						<form class="newsletter" action="{{ form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+							<input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="Sign up to {{ shop.name }} news" name="EMAIL" id="mail" class="form-control" aria-label="Sign up to {{ shop.name }} news" autocorrect="off" autocapitalize="off">
 							<i class="fa fa-angle-right"></i>
-							<input type="submit" class="email-submit" name="subscribe" id="subscribe" />
+							<input type="submit" class="email-submit" name="subscribe" id="subscribe" value="Subscribe">
 						</form>
 					</div>
 					{% endif %}

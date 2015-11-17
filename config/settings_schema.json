@@ -448,7 +448,7 @@
       },
       {
         "type": "text",
-        "id": "mailing_list_form_action",
+        "id": "newsletter_form_action",
         "label": "Mailchimp form action URL",
         "info": "[Where do I find my Mailchimp form action URL?](http:\/\/support.shopify.com\/customer\/portal\/articles\/640278)"
       },

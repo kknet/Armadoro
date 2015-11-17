@@ -102,7 +102,7 @@
             // as an example, enable keyboard arrows nav
             keyboardNavEnabled: true,
             controlNavigation: 'none',
-            imageScaleMode: 'none'
+            imageScaleMode: 'fill'
         });  
     });
 </script>
@@ -110,12 +110,11 @@
 <script>
     jQuery(document).ready(function($) {
         $("#lookbook-slider").royalSlider({
-            // options go here
-            // as an example, enable keyboard arrows nav
-            keyboardNavEnabled: true,
-            controlNavigation: 'none',
-            autoScaleSlider: true,
-            imageScaleMode: 'none'
+			autoHeight: true,
+			controlNavigation: 'none',
+			imageScaleMode: 'none',
+			imageAlignCenter:false,
+			keyboardNavEnabled: true
         });  
     });
 </script>
