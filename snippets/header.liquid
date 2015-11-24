@@ -43,12 +43,31 @@
 		</div>
 	</nav>
 
-	<div class="container">
+	<div class="container hidden-xs">
+		{% if settings.use_logo %}
+			<a class="header-logo" href="/">
+				<img class="img-responsive center-block" width="400" src="{{ 'logo.png' | asset_url }}" alt="{{img_tag: shop.name}}">
+			</a>
+		{% else %}
+			<a class="navbar-brand" href="/">
+				{{ shop.name }}
+			</a>
+		{% endif %}
+			{% if template == 'index' %}
 
-		<h1 class="logo hidden-xs">
+			{% comment %}
+				Many SEO audit tools look for a h1 tag on the home page. Let's give 'em one.
+				Other pages should use the resource name as h1 tag. For example, on the product
+				page, the product title will use a h1 tag.
+			{% endcomment %}
+
+			<h1 class="hidden">{{ shop.name }}</h1>
+		{% endif %}
+
+		{% comment %}<h1 class="logo hidden-xs">
 			<a href="/">{{ shop.name }}</a>
 			<small class="tagline">One of the kind jewelry from Greece</small>
-		</h1>
+		</h1>{% endcomment %}
 	</div>
 
 </header>
