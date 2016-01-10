@@ -91,19 +91,35 @@
 
 {{ 'bootstrap.min.js' | asset_url | script_tag }}
 {{ 'offcanvas.js' | asset_url | script_tag }}
+{{ 'instafeed.js' | asset_url | script_tag }}
 {{ 'jquery.royalslider.min.js' | asset_url | script_tag }}
 
 {% include 'currencies' %}
 
+{% assign instafeed_template = '<a href="{{link}}" target="_blank"><img src="{{image}}" /></a>' %}
+<script type="text/javascript">
+    var feed = new Instafeed({
+        get: 'tagged',
+        tagName: 'ARMADOROjewelry',
+        clientId: 'a09f68c9ae8c4c5bba18c283b8df669f',
+        template: '{{ instafeed_template }}'
+    });
+    feed.run();
+</script>
+
 <script>
 	jQuery(document).ready(function($) {
 		$("#home-slider").royalSlider({
-            // options go here
-            // as an example, enable keyboard arrows nav
-            keyboardNavEnabled: true,
-            controlNavigation: 'none',
-            imageScaleMode: 'fill'
-        });  
+			keyboardNavEnabled: true,
+			controlNavigation: 'none',
+			autoScaleSlider: true,
+			
+			autoPlay: {
+    		// autoplay options go gere
+    			enabled: true,
+    			pauseOnHover: true
+    		}
+    	});
 	});
 </script>
 
