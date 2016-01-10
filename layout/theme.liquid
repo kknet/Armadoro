@@ -96,27 +96,57 @@
 {% include 'currencies' %}
 
 <script>
-    jQuery(document).ready(function($) {
-        $("#home-slider").royalSlider({
+	jQuery(document).ready(function($) {
+		$("#home-slider").royalSlider({
             // options go here
             // as an example, enable keyboard arrows nav
             keyboardNavEnabled: true,
             controlNavigation: 'none',
             imageScaleMode: 'fill'
         });  
-    });
+	});
 </script>
 
 <script>
-    jQuery(document).ready(function($) {
-        $("#lookbook-slider").royalSlider({
+	jQuery(document).ready(function($) {
+		$("#lookbook-slider").royalSlider({
 			autoHeight: true,
+			arrowsNav: true,
+			arrowsNavAutoHide: false,
+			fadeinLoadedSlide: false,
+			controlNavigationSpacing: 0,
 			controlNavigation: 'none',
 			imageScaleMode: 'none',
 			imageAlignCenter:false,
-			keyboardNavEnabled: true
-        });  
-    });
+			loop: false,
+			loopRewind: true,
+			numImagesToPreload: 6,
+			keyboardNavEnabled: true,
+			usePreloader: false
+		});
+
+		$("#press-slider").royalSlider({
+			visibleNearby: {
+				enabled: true,
+				centerArea: 0.5,
+				center: true,
+				breakpoint: 650,
+				breakpointCenterArea: 0.64,
+				navigateByCenterClick: true
+			},
+			addActiveClass: true,
+			arrowsNav: false,
+			controlNavigation: 'none',
+			autoScaleSlider: true, 
+			autoScaleSliderWidth: 960,     
+			autoScaleSliderHeight: 340,
+			loop: true,
+			fadeinLoadedSlide: false,
+			globalCaption: true,
+			keyboardNavEnabled: true,
+			globalCaptionInside: false,
+		});
+	});
 </script>
 
 <script>
