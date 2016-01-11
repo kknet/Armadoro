@@ -96,23 +96,26 @@
 
 {% include 'currencies' %}
 
-{% assign instafeed_template = '<a href="{{link}}" target="_blank"><img src="{{image}}" /></a>' %}
+{% assign instafeed_template = '<a href="{{link}}" target="_blank"><img src="{{image}}"/></a>' %}
 <script type="text/javascript">
     var feed = new Instafeed({
-        get: 'tagged',
-        tagName: 'ARMADOROjewelry',
-        clientId: 'a09f68c9ae8c4c5bba18c283b8df669f',
+        get: 'user',
+        userId: '2138427593',
+        accessToken: '2138427593.1677ed0.932b35cc23574889b9211276a4b41e01',
+        resolution: "thumbnail",
+        limit: 2,
         template: '{{ instafeed_template }}'
     });
     feed.run();
 </script>
 
 <script>
-	jQuery(document).ready(function($) {
+	$(window).load(function() {
 		$("#home-slider").royalSlider({
 			keyboardNavEnabled: true,
 			controlNavigation: 'none',
-			autoScaleSlider: true,
+			// autoHeight: true,
+			autoScaleSlider:false,
 			
 			autoPlay: {
     		// autoplay options go gere

@@ -255,3 +255,24 @@ a.btn-search {
 		}
 	}
 }
+
+//== Instagram Home page
+// --------------------------------------------------
+
+.instagram-desc{
+	display: block;
+	@include uppercase;
+	text-align: center;
+	padding-top: 10px;
+
+	&:hover,
+	&:focus{
+		text-decoration: none;
+		@include opacity(.7);
+	}
+
+	.instagram-user{
+		font-size: 16px;
+		font-family: $font-family-serif;
+	}
+}

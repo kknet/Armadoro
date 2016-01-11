@@ -11,8 +11,16 @@
 		</a>
 	</div>
 	<div class="product-list-price">
-		{% if product.price_varies %}From{% endif %}
-		{{ product.price | money  }}
+		{% comment %}{% if product.price_varies %}From{% endif %}
+		{{ product.price | money  }}{% endcomment %}
+
+		{% if product.compare_at_price_min > product.price %}
+			{{ product.price | money  }}&nbsp;&nbsp;
+			<del class="small" style="font-weight:normal;">{{ product.compare_at_price_min | money  }}</del>
+		{% else %}
+			{{ product.price | money  }}
+		{% endif %}
+
 	</div>
 	<div class="product-list-title">
 		<a href="{{ product.url | within: collection }}">

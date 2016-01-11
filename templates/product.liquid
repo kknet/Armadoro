@@ -166,9 +166,9 @@
 
 		<p>
 			<strong>Product code: {{ product.variants.first.sku }}</strong> - Need help? 
-			<a href="#" data-toggle="modal" data-target="#contactModal">Contact us</a>
+			{% comment %}<a href="#" data-toggle="modal" data-target="#contactModal">Contact us</a>{% endcomment %}
 		</p>
-		<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModal" aria-hidden="true">
+		{% comment %}<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModal" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -180,7 +180,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>{% endcomment %}
 		<p>
 			<strong>View More</strong> <br>
 			<ul>
