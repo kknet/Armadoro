@@ -260,10 +260,11 @@ a.btn-search {
 // --------------------------------------------------
 
 .instagram-desc{
+	font-size: 16px;
 	display: block;
 	@include uppercase;
 	text-align: center;
-	padding-top: 10px;
+	padding: 15px 0;
 
 	&:hover,
 	&:focus{
@@ -272,7 +273,22 @@ a.btn-search {
 	}
 
 	.instagram-user{
-		font-size: 16px;
+		font-size: 1.3em;
 		font-family: $font-family-serif;
+	}
+}
+
+//== Royal
+// --------------------------------------------------
+
+.royalSlider{
+	height: 560px;
+
+	@media (max-width: $screen-sm){
+		height: 360px;
+	}
+
+	@media (max-width: $screen-xs){
+		height: 180px;
 	}
 }

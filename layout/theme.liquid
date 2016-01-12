@@ -25,9 +25,9 @@
 
 	{{ content_for_header }}
 
-	{{ 'theme.css' | asset_url | stylesheet_tag }}
 	{{ 'royalslider.css' | asset_url | stylesheet_tag }}
 	{{ 'rs-default.css' | asset_url | stylesheet_tag }}
+	{{ 'theme.css' | asset_url | stylesheet_tag }}
 	{% comment %}{{ 'social/social-icons.css' | global_asset_url | stylesheet_tag }}{% endcomment %}
 	{{ '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' | stylesheet_tag }}
 
@@ -96,13 +96,13 @@
 
 {% include 'currencies' %}
 
-{% assign instafeed_template = '<a href="{{link}}" target="_blank"><img src="{{image}}"/></a>' %}
+{% assign instafeed_template = '<div class="col-xs-6"><a href="{{link}}" target="_blank"><img class="img-responsive" src="{{image}}"/></a></div>' %}
 <script type="text/javascript">
     var feed = new Instafeed({
         get: 'user',
-        userId: '2138427593',
-        accessToken: '2138427593.1677ed0.932b35cc23574889b9211276a4b41e01',
-        resolution: "thumbnail",
+        userId: '256221495',
+        accessToken: '256221495.1677ed0.0d22360eea594fcdb966cedefddd18eb',
+        resolution: "standard_resolution",
         limit: 2,
         template: '{{ instafeed_template }}'
     });
@@ -114,9 +114,6 @@
 		$("#home-slider").royalSlider({
 			keyboardNavEnabled: true,
 			controlNavigation: 'none',
-			// autoHeight: true,
-			autoScaleSlider:false,
-			
 			autoPlay: {
     		// autoplay options go gere
     			enabled: true,

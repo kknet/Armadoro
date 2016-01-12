@@ -40,11 +40,11 @@
 				<i class="fa fa-search fa-lg"></i>
 			</p>
 
-			<ul class="nav navbar-nav navbar-left">
+			<ul class="nav navbar-nav">
 				{% for link in linklists.main-menu.links %}
 				{% assign child_list_handle = link.title | handleize %}
 				{% if linklists[child_list_handle].links != blank %}
-				<li class="dropdown">
+				<li class="dropdown {% if link.active %}active{% endif %}">
 					<a href="{{ link.url }}" data-target="{{ link.url }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ link.title }}</a>
 					<ul class="dropdown-menu" role="menu">
 						{% for childlink in linklists[child_list_handle].links %}

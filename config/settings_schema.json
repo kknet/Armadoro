@@ -556,7 +556,7 @@
       },
       {
         "type": "paragraph",
-        "content": "For best results, upload images that are at least 966px wide. Try to keep your slideshow images the same size."
+        "content": "For best results, upload images that are at least 1140px wide and 560px height. Try to keep your slideshow images the same size."
       },
       {
         "type": "paragraph",
@@ -571,7 +571,7 @@
         "type": "image",
         "id": "slideshow_1.jpg",
         "label": "Image",
-        "max-width": 966
+        "max-width": 1140
       },
       {
         "type": "text",
@@ -592,7 +592,7 @@
         "type": "image",
         "id": "slideshow_2.jpg",
         "label": "Image",
-        "max-width": 966
+        "max-width": 1140
       },
       {
         "type": "text",
@@ -613,7 +613,7 @@
         "type": "image",
         "id": "slideshow_3.jpg",
         "label": "Image",
-        "max-width": 966
+        "max-width": 1140
       },
       {
         "type": "text",
@@ -633,12 +633,74 @@
         "type": "image",
         "id": "slideshow_4.jpg",
         "label": "Image",
-        "max-width": 966
+        "max-width": 1140
       },
       {
         "type": "text",
         "id": "slide_4_link",
         "label": "Links to"
+      },
+      {
+        "type": "header",
+        "content": "Featured Banner"
+      },
+      {
+        "type": "paragraph",
+        "content": "For best results, upload images that are at least 860px wide and 560px height. Try to keep your banner images the same size."
+      },
+      {
+        "type": "paragraph",
+        "content": "Banner #1"
+      },
+      {
+        "type": "checkbox",
+        "id": "banner_1",
+        "label": "Show?"
+      },
+      {
+        "type": "image",
+        "id": "banner_1.jpg",
+        "label": "Image",
+        "max-width": 860
+      },
+      {
+        "type": "text",
+        "id": "banner_1_link",
+        "label": "Links to",
+        "default": "\/collections\/all"
+      },
+      {
+        "type": "text",
+        "id": "banner_1_alt",
+        "label": "alt",
+        "default": "banner 1"
+      },
+      {
+        "type": "paragraph",
+        "content": "Banner #2"
+      },
+      {
+        "type": "checkbox",
+        "id": "banner_2",
+        "label": "Show?"
+      },
+      {
+        "type": "image",
+        "id": "banner_2.jpg",
+        "label": "Image",
+        "max-width": 860
+      },
+      {
+        "type": "text",
+        "id": "banner_2_link",
+        "label": "Links to",
+        "default": "\/collections\/all"
+      },
+      {
+        "type": "text",
+        "id": "banner_2_alt",
+        "label": "alt",
+        "default": "banner 2"
       },
       {
         "type": "header",

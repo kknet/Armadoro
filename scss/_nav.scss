@@ -86,9 +86,30 @@
 	}
 }
 
-.navbar-left > li > a{
-	@include uppercase();
-}
+.navbar-nav{
+	> li > a{
+		@include uppercase();
+	}
+
+	@media (min-width: $grid-float-breakpoint){
+		text-align: center;
+		float: none;
+
+		> li{
+			display: inline-block;
+			float: none;
+
+			> a{
+				&:hover,
+				&:focus{
+					background-color: transparent;
+					border-bottom: 1px solid #000;
+					margin-bottom: -1px;
+				}
+			}
+		}
+	}
+} 
 
 .navbar-secondary{
 	border-top: 1px solid $navbar-inverse-border;
