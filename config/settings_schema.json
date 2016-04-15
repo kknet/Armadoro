@@ -544,6 +544,20 @@
         "type": "checkbox",
         "id": "accept_bitcoin",
         "label": "Bitcoin"
+      },
+      {
+        "type": "header",
+        "content": "Addresses"
+      },
+      {
+        "type": "textarea",
+        "id": "footer_address_1",
+        "label": "Address 1"
+      },
+      {
+        "type": "textarea",
+        "id": "footer_address_2",
+        "label": "Address 2"
       }
     ]
   },
